@@ -41,8 +41,9 @@ namespace VRTK.GrabAttachMechanics
             thisJoint.yMotion = yMotion;
             thisJoint.zMotion = zMotion;
             thisJoint.rotationDriveMode = RotationDriveMode.Slerp;
-            //thisJoint.slerpDrive.positionDamper = 0.08f;
-            //To Do: figure out how this value can be set!
+            JointDrive thisJointDrive = thisJoint.slerpDrive;
+            thisJointDrive.positionDamper = 0.08f;
+            thisJoint.slerpDrive = thisJointDrive;
         }
     }
 
