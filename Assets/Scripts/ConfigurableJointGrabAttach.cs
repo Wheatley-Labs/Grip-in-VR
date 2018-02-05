@@ -39,7 +39,7 @@ namespace VRTK.GrabAttachMechanics
             ConfigurableJoint thisJoint = gameObject.GetComponent<ConfigurableJoint>();
             thisJoint.xMotion = xMotion;
             thisJoint.yMotion = yMotion;
-            thisJoint.zMotion = zMotion;
+            thisJoint.zMotion = zMotion;            
             thisJoint.rotationDriveMode = RotationDriveMode.Slerp;
             JointDrive thisJointDrive = thisJoint.slerpDrive;
             thisJointDrive.positionDamper = 0.08f;
