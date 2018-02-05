@@ -47,9 +47,11 @@
                 //thisJoint.angularYMotion = ConfigurableJointMotion.Limited;
                 //thisJoint.angularZMotion = ConfigurableJointMotion.Limited;
                 //GameObject rightController = GameObject.Find("Controller (right)");
-                //Quaternion currentRotation = thisJoint.transform.rotation;
+
+                thisJoint.targetRotation = gameObject.transform.rotation;
+                //Quaternion currentRotation = gameObject.transform.localRotation;
                 //if (thisJoint.configuredInWorldSpace)
-                //    SetTargetRotation(thisJoint, Quaternion.Euler(0,0,0), currentRotation, Space.World);
+                //    SetTargetRotation(thisJoint, Quaternion.Euler(0, 0, 0), currentRotation, Space.World);
                 //else
                 //    SetTargetRotation(thisJoint, Quaternion.Euler(0, 0, 0), currentRotation, Space.Self);
                 JointDrive thisJointDrive = thisJoint.slerpDrive;
@@ -75,33 +77,33 @@
         }
 
         //code by mstevenson/ConfigurableJointExtensions.cs, retrieved 2018/02/05 12:50 from https://gist.github.com/mstevenson/495883
-        //static void SetTargetRotation (ConfigurableJoint thisJoint, Quaternion targetRotation, Quaternion startRotation, Space space)
-        //{
-        //    // Calculate the rotation expressed by the joint's axis and secondary axis
-        //    var right = thisJoint.axis;
-        //    var forward = Vector3.Cross(thisJoint.axis, thisJoint.secondaryAxis).normalized;
-        //    var up = Vector3.Cross(forward, right).normalized;
-        //    Quaternion worldToJointSpace = Quaternion.LookRotation(forward, up);
+        static void SetTargetRotation(ConfigurableJoint thisJoint, Quaternion targetRotation, Quaternion startRotation, Space space)
+        {
+            // Calculate the rotation expressed by the joint's axis and secondary axis
+            Vector3 right = thisJoint.axis;
+            Vector3 forward = Vector3.Cross(thisJoint.axis, thisJoint.secondaryAxis).normalized;
+            Vector3 up = Vector3.Cross(forward, right).normalized;
+            Quaternion worldToJointSpace = Quaternion.LookRotation(forward, up);
 
-        //    // Transform into world space
-        //    Quaternion resultRotation = Quaternion.Inverse(worldToJointSpace);
+            // Transform into world space
+            Quaternion resultRotation = Quaternion.Inverse(worldToJointSpace);
 
-        //    // Counter-rotate and apply the new local rotation.
-        //    // Joint space is the inverse of world space, so we need to invert our value
-        //    if (space == Space.World)
-        //    {
-        //        resultRotation *= startRotation * Quaternion.Inverse(targetRotation);
-        //    }
-        //    else
-        //    {
-        //        resultRotation *= Quaternion.Inverse(targetRotation) * startRotation;
-        //    }
+            // Counter-rotate and apply the new local rotation.
+            // Joint space is the inverse of world space, so we need to invert our value
+            if (space == Space.World)
+            {
+                resultRotation *= startRotation * Quaternion.Inverse(targetRotation);
+            }
+            else
+            {
+                resultRotation *= Quaternion.Inverse(targetRotation) * startRotation;
+            }
 
-        //    // Transform back into joint space
-        //    resultRotation *= worldToJointSpace;
+            // Transform back into joint space
+            resultRotation *= worldToJointSpace;
 
-        //    // Set target rotation to our newly calculated rotation
-        //    thisJoint.targetRotation = resultRotation;
-        //}
+            // Set target rotation to our newly calculated rotation
+            thisJoint.targetRotation = resultRotation;
+        }
     }
 }
