@@ -8,7 +8,21 @@
     public class Interactable_TightGrip : VRTK_InteractableObject
     {
         private VRTK_ControllerEvents controllerEvents;
+        private GameObject rContr;
+        private GameObject lContr;
         private bool gripTight = false;
+        private bool isInitialized = false;
+
+        private Vector3 rotLastFramePhys = Vector3.zero;
+        private Vector3 rotLastFrameContr = Vector3.zero;
+
+        private float tightness = 0f;
+
+        private new void Awake()
+        {
+            rContr = GameObject.Find("RightController");
+            lContr = GameObject.Find("LeftController");
+        }
 
         public override void StartUsing(VRTK_InteractUse usingObject)
         {
@@ -25,14 +39,47 @@
         protected override void Update()
         {
             base.Update();
-            if (controllerEvents)
+            //if (controllerEvents)
+            //{
+            //    TightenGrip();
+            //    //VRTK_ControllerHaptics.TriggerHapticPulse(VRTK_ControllerReference.GetControllerReference(controllerEvents.gameObject), 0.25f, 0.1f, 0.01f);
+            //}
+            //else
+            //{
+            //    LoosenGrip();
+            //}
+        }
+
+        private new void FixedUpdate()
+        {
+            if (GetComponent<VRTK_InteractableObject>().IsGrabbed())
             {
-                TightenGrip();
-                //VRTK_ControllerHaptics.TriggerHapticPulse(VRTK_ControllerReference.GetControllerReference(controllerEvents.gameObject), 0.25f, 0.1f, 0.01f);
+                if (isInitialized)
+                {
+                    Vector3 deltaPhys = transform.rotation.eulerAngles - rotLastFramePhys;
+                    Vector3 deltaContr = rContr.transform.rotation.eulerAngles - rotLastFrameContr;
+                    tightness = rContr.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis();
+
+                    transform.rotation = Quaternion.Euler(
+                        transform.rotation.eulerAngles +
+                        tightness * deltaContr +
+                        (1 - tightness) * deltaPhys);
+
+                    rotLastFrameContr = rContr.transform.rotation.eulerAngles;
+                    rotLastFramePhys = transform.rotation.eulerAngles;
+                }
+                else
+                {
+                    rotLastFramePhys = transform.rotation.eulerAngles;
+                    rotLastFrameContr = rContr.transform.rotation.eulerAngles;
+                    isInitialized = true;
+                }
             }
             else
+                if (isInitialized)
             {
-                LoosenGrip();
+
+                isInitialized = false;
             }
         }
 
