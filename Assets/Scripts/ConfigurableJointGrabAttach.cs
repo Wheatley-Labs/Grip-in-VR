@@ -44,6 +44,7 @@ namespace VRTK.GrabAttachMechanics
             JointDrive thisJointDrive = thisJoint.slerpDrive;
             thisJointDrive.positionDamper = 0.08f;
             thisJoint.slerpDrive = thisJointDrive;
+            thisJoint.configuredInWorldSpace = true;
         }
     }
 
