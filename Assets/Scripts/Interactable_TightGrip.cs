@@ -19,8 +19,10 @@
         private bool gripTight = false;
         private bool isInitialized = false;
 
-        private Vector3 rotLastFramePhys = Vector3.zero;
-        private Vector3 rotLastFrameContr = Vector3.zero;
+        private Quaternion rotLastFramePhys = Quaternion.identity;
+        private Quaternion rotLastFrameContr = Quaternion.identity;
+        private Quaternion contrRotOffset = Quaternion.identity;
+        private Quaternion dynamicContrRotOffset = Quaternion.identity;
 
         private Vector3 angVelLastFramePhys = Vector3.zero;
         private Vector3 angVelLastFrameContr = Vector3.zero;
@@ -66,25 +68,22 @@
                 if (isInitialized)
                 {
                     //The changes in rotation and angular velocity since the last frame 
-                    Vector3 deltaRotPhys =  transform.rotation.eulerAngles - rotLastFramePhys;
-                    Vector3 deltaRotContr =  rContr.transform.rotation.eulerAngles - rotLastFrameContr;
-                    Vector3 deltaAngVelPhys = thisRB.angularVelocity - angVelLastFramePhys;
-                    Vector3 deltaAngVelContr = rContrRB.angularVelocity - angVelLastFrameContr;
-                    Debug.Log("Delta Physics: " + deltaRotPhys);
-                    Debug.Log("Controller Last Frame:    " + rotLastFrameContr);
-                    Debug.Log("Controller Current Frame: " + rContr.transform.rotation.eulerAngles);
-                    Debug.Log("Delta Controller: " + deltaRotContr);
+                    Quaternion deltaRotPhys =  Quaternion.Inverse(rotLastFramePhys) * transform.rotation;                                           //the difference between the two rotations
+                    Quaternion deltaRotContr =  Quaternion.Inverse(rotLastFrameContr) * (rContr.transform.rotation * contrRotOffset);
+                    //Vector3 deltaAngVelPhys = thisRB.angularVelocity - angVelLastFramePhys;
+                    //Vector3 deltaAngVelContr = rContrRB.angularVelocity - angVelLastFrameContr;
+                    //Debug.Log("Delta Physics: " + deltaRotPhys);
+                    //Debug.Log("Controller Last Frame:    " + rotLastFrameContr);
+                    //Debug.Log("Controller Current Frame: " + rContr.transform.rotation.eulerAngles);
+                    //Debug.Log("Delta Controller: " + deltaRotContr);
 
                     //How tight is the grip? As much as the trigger is pulled resulting in values between 0.0 and 1.0
                     tightness = rContrInteract.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis();
                     //tightness = 1f;   //for testing the adjustment to the controller
 
                     //Setting the actual rotation for the current frame
-                    transform.rotation = Quaternion.Euler(
-                        rotLastFramePhys +                         //start off with the last frame's orientation 
-                        tightness * deltaRotContr +                //apply the changes in rotation: the tighter the grip, the more the controller rotation affects the object
-                        (1 - tightness) * deltaRotPhys);           //apply the changes in rotation: the looser the grip, the more the rotation according to physics affect the object
-                                                                   //The sum of the changes adds up to 100%, e.g. with tightness=0.3 the rotation is influenced 30% by the controller and 70% by the physics
+                    transform.rotation = rotLastFramePhys *                         //start off with the last frame's orientation 
+                        Quaternion.Slerp(deltaRotPhys, deltaRotContr, tightness);   //Add the change in rotation according to a slerp between the controller rotation and the physical calculation by the tightness of the grip
 
                     //Also the angular velocity must be adjusted accordingly
                     //thisRB.angularVelocity =
@@ -93,29 +92,30 @@
                     //    (1 - tightness) * deltaAngVelPhys;
 
                     //The new rotation and angular velocity is stored for the next frame's calculations
-                    rotLastFrameContr = rContr.transform.rotation.eulerAngles;
-                    rotLastFramePhys = transform.rotation.eulerAngles;
-                    angVelLastFrameContr = rContrRB.angularVelocity;
-                    angVelLastFramePhys = thisRB.angularVelocity;
+                    rotLastFrameContr = rContr.transform.rotation * contrRotOffset;
+                    rotLastFramePhys = transform.rotation;
+                    //angVelLastFrameContr = rContrRB.angularVelocity;
+                    //angVelLastFramePhys = thisRB.angularVelocity;
                     
                 }
                 else
                 {
                     rContr = GameObject.FindGameObjectWithTag("Right Controller");
-                    lContr = GameObject.FindGameObjectWithTag("Left Controller");
+                    //lContr = GameObject.FindGameObjectWithTag("Left Controller");
                     rContrInteract = GameObject.Find("RightController");
-                    lContrInteract = GameObject.Find("LeftController");
+                    //lContrInteract = GameObject.Find("LeftController");
                     rContrRB = rContrInteract.GetComponent<Rigidbody>();
-                    lContrRB = lContrInteract.GetComponent<Rigidbody>();
+                    //lContrRB = lContrInteract.GetComponent<Rigidbody>();
                     thisRB = gameObject.GetComponent<Rigidbody>();
 
                     //Current values are saved for the changes in rotation to be calculated in the next frames
-                    rotLastFramePhys = transform.rotation.eulerAngles;
-                    rotLastFrameContr = rContr.transform.rotation.eulerAngles;
+                    rotLastFramePhys = transform.rotation;
+                    contrRotOffset = Quaternion.Inverse(rContr.transform.rotation);
+                    rotLastFrameContr = rContr.transform.rotation * contrRotOffset;
 
                     //Current values are saved for the changes in angular velocity to be calculated in the next frames
-                    angVelLastFramePhys = thisRB.angularVelocity;
-                    angVelLastFrameContr = rContrRB.angularVelocity;
+                    //angVelLastFramePhys = thisRB.angularVelocity;
+                    //angVelLastFrameContr = rContrRB.angularVelocity;
 
                     isInitialized = true;
                 }
