@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Right Controller
   - Left Controller
+  - Grab
   layers:
   - Default
   - TransparentFX

@@ -68,8 +68,8 @@
                 if (isInitialized)
                 {
                     //The changes in rotation and angular velocity since the last frame 
-                    Quaternion deltaRotPhys =  Quaternion.Inverse(rotLastFramePhys) * transform.rotation;                                           //the difference between the two rotations
-                    Quaternion deltaRotContr =  Quaternion.Inverse(rotLastFrameContr) * (rContr.transform.rotation * contrRotOffset);
+                    Quaternion deltaRotPhys =  Quaternion.Inverse(rotLastFramePhys) * transform.localRotation;                                           //the difference between the two rotations
+                    Quaternion deltaRotContr =  Quaternion.Inverse(rotLastFrameContr) * (rContr.transform.localRotation * contrRotOffset);
                     //Vector3 deltaAngVelPhys = thisRB.angularVelocity - angVelLastFramePhys;
                     //Vector3 deltaAngVelContr = rContrRB.angularVelocity - angVelLastFrameContr;
                     //Debug.Log("Delta Physics: " + deltaRotPhys);
@@ -82,8 +82,14 @@
                     //tightness = 1f;   //for testing the adjustment to the controller
 
                     //Setting the actual rotation for the current frame
-                    transform.rotation = rotLastFramePhys *                         //start off with the last frame's orientation 
-                        Quaternion.Slerp(deltaRotPhys, deltaRotContr, tightness);   //Add the change in rotation according to a slerp between the controller rotation and the physical calculation by the tightness of the grip
+                    transform.localRotation = rotLastFramePhys *                         //start off with the last frame's orientation 
+                    Quaternion.Slerp(deltaRotPhys, deltaRotContr, tightness);   //Add the change in rotation according to a slerp between the controller rotation and the physical calculation by the tightness of the grip
+                    //transform.rotation = rotLastFramePhys;
+                    //Quaternion delta = Quaternion.Slerp(deltaRotPhys, deltaRotContr, tightness);
+                    //Vector3 axis;
+                    //float angle;
+                    //delta.ToAngleAxis(out angle, out axis);
+                    //transform.RotateAround(rContr.transform.position, axis, angle);
 
                     //Also the angular velocity must be adjusted accordingly
                     //thisRB.angularVelocity =
@@ -92,8 +98,8 @@
                     //    (1 - tightness) * deltaAngVelPhys;
 
                     //The new rotation and angular velocity is stored for the next frame's calculations
-                    rotLastFrameContr = rContr.transform.rotation * contrRotOffset;
-                    rotLastFramePhys = transform.rotation;
+                    rotLastFrameContr = rContr.transform.localRotation * contrRotOffset;
+                    rotLastFramePhys = transform.localRotation;
                     //angVelLastFrameContr = rContrRB.angularVelocity;
                     //angVelLastFramePhys = thisRB.angularVelocity;
                     
@@ -109,9 +115,9 @@
                     thisRB = gameObject.GetComponent<Rigidbody>();
 
                     //Current values are saved for the changes in rotation to be calculated in the next frames
-                    rotLastFramePhys = transform.rotation;
+                    rotLastFramePhys = transform.localRotation;
                     contrRotOffset = Quaternion.Inverse(rContr.transform.rotation);
-                    rotLastFrameContr = rContr.transform.rotation * contrRotOffset;
+                    rotLastFrameContr = rContr.transform.localRotation * contrRotOffset;
 
                     //Current values are saved for the changes in angular velocity to be calculated in the next frames
                     //angVelLastFramePhys = thisRB.angularVelocity;
