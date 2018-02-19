@@ -27,11 +27,11 @@
         void Update()
         {
             tightness = rContrInteract.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis();
-
+            
             if (tightness < 0.05)
             {
                 JointDrive thisJointDrive = objJoint.slerpDrive;
-                thisJointDrive.positionDamper = 0.01f;
+                thisJointDrive.positionDamper = 0.0f;
                 objJoint.slerpDrive = thisJointDrive;
 
                 AllowRotation();
@@ -69,9 +69,22 @@
                 FreezeRotation();
             }
             
-
         }
 
+/*      //Dimis attempt to scale the velocity according to the tightness of the grip
+        //Problem: Objects needs to be a child, to use the parent's rotation --> weird joint physics
+        void FixedUpdate()
+        {
+            if (rContrInteract.GetComponent<VRTK_ControllerEvents>().gripClicked)
+            {
+                objRB.MovePosition(objJoint.connectedAnchor);
+                tightness = rContrInteract.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis();
+                Debug.Log("tightness" + tightness);
+                objRB.velocity *= Mathf.Clamp01(1f - tightness);
+                objRB.angularVelocity *= Mathf.Clamp01(1f - tightness);
+            }
+        }
+*/        
         void FreezeRotation()
         {
             objRB.constraints = RigidbodyConstraints.FreezeRotation;

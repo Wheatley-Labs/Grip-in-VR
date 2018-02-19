@@ -14,15 +14,19 @@ namespace VRTK.GrabAttachMechanics
         [Tooltip("Maximum force the joint can withstand before breaking. Infinity means unbreakable.")]
         public float breakForce = Mathf.Infinity;
         [Tooltip("Whether the motion around the x axis is free, limited or locked.")]
-        public ConfigurableJointMotion xMotion = ConfigurableJointMotion.Free;
+        public ConfigurableJointMotion xMotion = ConfigurableJointMotion.Locked;
         [Tooltip("Whether the motion around the y axis is free, limited or locked.")]
-        public ConfigurableJointMotion yMotion = ConfigurableJointMotion.Free;
+        public ConfigurableJointMotion yMotion = ConfigurableJointMotion.Locked;
         [Tooltip("Whether the motion around the z axis is free, limited or locked.")]
-        public ConfigurableJointMotion zMotion = ConfigurableJointMotion.Free;
+        public ConfigurableJointMotion zMotion = ConfigurableJointMotion.Locked;
         [Tooltip("Should the connectedAnchor be calculated automatically?")]
         public bool autoConfigureConnectedAnchor = false;
         [Tooltip("The Vector3 position of the connected anchor.")]
         public Vector3 connectedAnchor = new Vector3(0f, -0.06f, 0.05f);
+        [Tooltip("The strength of the dangeling damping.")]
+        public float positionDamper = 0.03f;
+        [Tooltip("Whether the joint is configured in World Space.")]
+        public bool configuredInWorldSpace = false;
 
         protected override void CreateJoint(GameObject obj)
         {
@@ -42,9 +46,9 @@ namespace VRTK.GrabAttachMechanics
             thisJoint.zMotion = zMotion;            
             thisJoint.rotationDriveMode = RotationDriveMode.Slerp;
             JointDrive thisJointDrive = thisJoint.slerpDrive;
-            thisJointDrive.positionDamper = 0.08f;
+            thisJointDrive.positionDamper = positionDamper;
             thisJoint.slerpDrive = thisJointDrive;
-            thisJoint.configuredInWorldSpace = true;
+            thisJoint.configuredInWorldSpace = configuredInWorldSpace;
         }
     }
 

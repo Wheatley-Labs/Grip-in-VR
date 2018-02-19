@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class Interactable_TightGrip : VRTK_InteractableObject
+    public class Interactable_GripGradual : VRTK_InteractableObject
     {
         private VRTK_ControllerEvents controllerEvents;
         private GameObject rContr;
@@ -47,20 +47,6 @@
             controllerEvents = null;
         }
 
-        protected override void Update()
-        {
-            base.Update();
-            //if (controllerEvents)
-            //{
-            //    TightenGrip();
-            //    //VRTK_ControllerHaptics.TriggerHapticPulse(VRTK_ControllerReference.GetControllerReference(controllerEvents.gameObject), 0.25f, 0.1f, 0.01f);
-            //}
-            //else
-            //{
-            //    LoosenGrip();
-            //}
-        }
-
         private new void FixedUpdate()
         {
             if (GetComponent<VRTK_InteractableObject>().IsGrabbed())
@@ -68,8 +54,8 @@
                 if (isInitialized)
                 {
                     //The changes in rotation and angular velocity since the last frame 
-                    Quaternion deltaRotPhys =  Quaternion.Inverse(rotLastFramePhys) * transform.localRotation;                                           //the difference between the two rotations
-                    Quaternion deltaRotContr =  Quaternion.Inverse(rotLastFrameContr) * (rContr.transform.localRotation * contrRotOffset);
+                    Quaternion deltaRotPhys =  Quaternion.Inverse(rotLastFramePhys) * transform.rotation;                                           //the difference between the two rotations
+                    Quaternion deltaRotContr =  Quaternion.Inverse(rotLastFrameContr) * (rContr.transform.rotation * contrRotOffset);
                     //Vector3 deltaAngVelPhys = thisRB.angularVelocity - angVelLastFramePhys;
                     //Vector3 deltaAngVelContr = rContrRB.angularVelocity - angVelLastFrameContr;
                     //Debug.Log("Delta Physics: " + deltaRotPhys);
@@ -82,14 +68,19 @@
                     //tightness = 1f;   //for testing the adjustment to the controller
 
                     //Setting the actual rotation for the current frame
-                    transform.localRotation = rotLastFramePhys *                         //start off with the last frame's orientation 
-                    Quaternion.Slerp(deltaRotPhys, deltaRotContr, tightness);   //Add the change in rotation according to a slerp between the controller rotation and the physical calculation by the tightness of the grip
-                    //transform.rotation = rotLastFramePhys;
-                    //Quaternion delta = Quaternion.Slerp(deltaRotPhys, deltaRotContr, tightness);
-                    //Vector3 axis;
-                    //float angle;
-                    //delta.ToAngleAxis(out angle, out axis);
-                    //transform.RotateAround(rContr.transform.position, axis, angle);
+                    //transform.localRotation = rotLastFramePhys *                         //start off with the last frame's orientation 
+                    //Quaternion.Slerp(deltaRotPhys, deltaRotContr, tightness);   //Add the change in rotation according to a slerp between the controller rotation and the physical calculation by the tightness of the grip
+                    
+                    //Calculate the share of the physical impact according to tightness, then apply rotation
+                    Quaternion scaledPhysDelta = Quaternion.Slerp(deltaRotPhys, Quaternion.identity, tightness);
+                    transform.rotation = rotLastFramePhys * scaledPhysDelta;
+
+                    //Calculate the share of the controller rotation, then apply the rotation around the center of the controller
+                    Vector3 rContrRotAxis;
+                    float rContrRotAngle;
+                    Quaternion scaledContrDelta = Quaternion.Slerp(deltaRotContr, Quaternion.identity, (1 - tightness));
+                    scaledContrDelta.ToAngleAxis(out rContrRotAngle, out rContrRotAxis);
+                    transform.RotateAround(rContr.transform.position, rContrRotAxis, rContrRotAngle);
 
                     //Also the angular velocity must be adjusted accordingly
                     //thisRB.angularVelocity =
@@ -98,8 +89,8 @@
                     //    (1 - tightness) * deltaAngVelPhys;
 
                     //The new rotation and angular velocity is stored for the next frame's calculations
-                    rotLastFrameContr = rContr.transform.localRotation * contrRotOffset;
-                    rotLastFramePhys = transform.localRotation;
+                    rotLastFrameContr = rContr.transform.rotation * contrRotOffset;
+                    rotLastFramePhys = transform.rotation;
                     //angVelLastFrameContr = rContrRB.angularVelocity;
                     //angVelLastFramePhys = thisRB.angularVelocity;
                     
@@ -115,9 +106,9 @@
                     thisRB = gameObject.GetComponent<Rigidbody>();
 
                     //Current values are saved for the changes in rotation to be calculated in the next frames
-                    rotLastFramePhys = transform.localRotation;
+                    rotLastFramePhys = transform.rotation;
                     contrRotOffset = Quaternion.Inverse(rContr.transform.rotation);
-                    rotLastFrameContr = rContr.transform.localRotation * contrRotOffset;
+                    rotLastFrameContr = rContr.transform.rotation * contrRotOffset;
 
                     //Current values are saved for the changes in angular velocity to be calculated in the next frames
                     //angVelLastFramePhys = thisRB.angularVelocity;
@@ -132,6 +123,27 @@
 
                 isInitialized = false;
             }
+        }
+
+
+        /// <summary>
+        /// Approach of 
+        /// - first using the Angular Limits
+        /// - later setting the target rotation according to current localRotation and using slerpDrive.positionSpring for applying it
+        /// </summary>
+
+        protected override void Update()
+        {
+            base.Update();
+            //if (controllerEvents)
+            //{
+            //    TightenGrip();
+            //    //VRTK_ControllerHaptics.TriggerHapticPulse(VRTK_ControllerReference.GetControllerReference(controllerEvents.gameObject), 0.25f, 0.1f, 0.01f);
+            //}
+            //else
+            //{
+            //    LoosenGrip();
+            //}
         }
 
         private void TightenGrip()
