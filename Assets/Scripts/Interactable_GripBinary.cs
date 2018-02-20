@@ -38,11 +38,15 @@
             controllerEvents = null;
         }
 
-        // TO DO
-        // TO DO
-        // Release parenting when object is dropped, before releasing the trigger
-        // TO DO
-        // TO DO
+        public override void OnInteractableObjectUngrabbed(InteractableObjectEventArgs e)
+        {
+            base.OnInteractableObjectUngrabbed(e);
+
+            if (isParented)
+            {
+                Unparent();
+            }
+        }
 
         protected override void Update()
         {
@@ -57,11 +61,7 @@
                 {
                     if (!isParented)
                     {
-                        thisRB.constraints = RigidbodyConstraints.FreezeRotation;
-                        orgParent = transform.parent;
-                        transform.parent = GetUsingObject().transform;
-
-                        isParented = true;
+                        Parent();
                     }
 
                 }
@@ -69,10 +69,7 @@
                 {
                     if (isParented)
                     {
-                        transform.parent = orgParent;
-                        thisRB.constraints = RigidbodyConstraints.None;
-
-                        isParented = false;
+                        Unparent();
                     }
                 }
             }
@@ -81,6 +78,23 @@
                 NewSlerp(0.03f);
             }
 
+        }
+
+        private void Unparent()
+        {
+            transform.parent = orgParent;
+            thisRB.constraints = RigidbodyConstraints.None;
+
+            isParented = false;
+        }
+
+        private void Parent()
+        {
+            thisRB.constraints = RigidbodyConstraints.FreezeRotation;
+            orgParent = transform.parent;
+            transform.parent = GetUsingObject().transform;
+
+            isParented = true;
         }
 
         void NewSlerp(float value)
