@@ -10,9 +10,13 @@
 
     public class Interactable_GripBinary : VRTK_InteractableObject
     {
+        public bool gravityPull = true;
+        public bool invertGrip = false;
+
         private VRTK_ControllerEvents controllerEvents;
         private Rigidbody thisRB;
         private ConfigurableJoint thisJoint;
+        private Light flashLight;
 
         private Transform orgParent;
         private bool isParented = false;
@@ -22,8 +26,49 @@
         private void Start()
         {
             thisRB = GetComponent<Rigidbody>();
+            flashLight = GetComponentInChildren<Light>();
         }
 
+        public override void OnInteractableObjectGrabbed(InteractableObjectEventArgs e)
+        {
+            base.OnInteractableObjectGrabbed(e);
+
+            if (gravityPull)
+            {
+                thisRB.useGravity = true;
+                thisRB.constraints = RigidbodyConstraints.None;
+            }
+            else
+            {
+                thisRB.useGravity = false;
+                thisRB.constraints = RigidbodyConstraints.FreezeRotation;
+            }
+
+            if (invertGrip)
+            {
+                StartCoroutine(InverseInitialization());
+            }
+        }
+
+        private IEnumerator InverseInitialization()
+        {
+            //wait for one frame
+            yield return 0;
+
+            //then parent the object
+            Parent();
+        }
+
+        public override void OnInteractableObjectUngrabbed(InteractableObjectEventArgs e)
+        {
+            base.OnInteractableObjectUngrabbed(e);
+
+            if (isParented)
+                Unparent();
+
+            thisRB.useGravity = true;
+            thisRB.constraints = RigidbodyConstraints.None;
+        }
 
         public override void StartUsing(VRTK_InteractUse usingObject)
         {
@@ -38,15 +83,6 @@
             controllerEvents = null;
         }
 
-        public override void OnInteractableObjectUngrabbed(InteractableObjectEventArgs e)
-        {
-            base.OnInteractableObjectUngrabbed(e);
-
-            if (isParented)
-            {
-                Unparent();
-            }
-        }
 
         protected override void Update()
         {
@@ -59,19 +95,40 @@
                 //Parent the object when the trigger is fully pulled
                 if (controllerEvents.GetComponent<VRTK_ControllerEvents>().triggerClicked)
                 {
-                    if (!isParented)
+                    if (!invertGrip)
                     {
-                        Parent();
+                        if (!isParented)
+                            Parent();
                     }
-
+                    else
+                    {
+                        if (isParented)
+                            Unparent();
+                    }
                 }
                 else //unparent when released
                 {
-                    if (isParented)
+                    if (!invertGrip)
                     {
-                        Unparent();
+                        if (isParented)
+                            Unparent();
                     }
+                    else
+                        if (!isParented)
+                            Parent();
                 }
+
+                if (controllerEvents.GetComponent<VRTK_ControllerEvents>().touchpadPressed)
+                {
+                    TriggerLight();
+                }
+
+                //TO DO
+                //
+                // Goes off again, just use on click
+                // also enable when trigger not pressed
+                //
+                //TO DO
             }
             else
             {
@@ -83,7 +140,13 @@
         private void Unparent()
         {
             transform.parent = orgParent;
-            thisRB.constraints = RigidbodyConstraints.None;
+            if (gravityPull)
+            {
+                thisRB.constraints = RigidbodyConstraints.None;
+                thisRB.useGravity = true;
+            }
+            else
+                thisRB.useGravity = false;
 
             isParented = false;
         }
@@ -105,6 +168,11 @@
                 thisJointDrive.positionDamper = value;
                 thisJoint.slerpDrive = thisJointDrive;
             }
+        }
+
+        void TriggerLight()
+        {
+            flashLight.enabled = !(flashLight.enabled);
         }
     }
 }
