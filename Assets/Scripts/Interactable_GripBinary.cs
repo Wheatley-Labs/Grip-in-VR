@@ -7,13 +7,19 @@
 
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(VRTK_InteractControllerAppearance))]
 
     public class Interactable_GripBinary : VRTK_InteractableObject
     {
         public bool gravityPull = true;
-        public bool invertGrip = false;
+        public bool triggerToGrab = false;
+        public bool hideController = false;
 
         private VRTK_ControllerEvents controllerEvents;
+        private VRTK_InteractGrab grabbingController;
+        private bool objectGrabbed = false;
+        private bool objectUsed = false;
+
         private Rigidbody thisRB;
         private ConfigurableJoint thisJoint;
         private Light flashLight;
@@ -30,11 +36,19 @@
 
             flashLight = GetComponentInChildren<Light>();
             lastLightTrigger = Time.timeSinceLevelLoad;
+
+            if (triggerToGrab)
+                grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerTouch;
+
+            if (hideController)
+                GetComponent<VRTK_InteractControllerAppearance>().hideControllerOnGrab = true;
         }
 
-        public override void OnInteractableObjectGrabbed(InteractableObjectEventArgs e)
+        public override void Grabbed(VRTK_InteractGrab currentGrabbingObject = null)
         {
-            base.OnInteractableObjectGrabbed(e);
+            base.Grabbed(currentGrabbingObject);
+            grabbingController = currentGrabbingObject;
+            objectGrabbed = true;
 
             if (gravityPull)
             {
@@ -46,35 +60,13 @@
                 thisRB.useGravity = false;
                 thisRB.constraints = RigidbodyConstraints.FreezeRotation;
             }
-
-            if (invertGrip)
-            {
-                //StartCoroutine(InverseInitialization());
-            }
-
-            if (GetComponent<VRTK_ControllerEvents>().touchpadPressed && Time.time > (lastLightTrigger + 1f))
-            {
-                TriggerFlashlight();
-            }
         }
 
-        private IEnumerator InverseInitialization()
+        public override void Ungrabbed(VRTK_InteractGrab previousGrabbingObject = null)
         {
-            //wait for one frame
-            yield return 0;
-
-            //then parent the object
-            Parent();
-        }
-
-        private void TriggerFlashlight()
-        {
-            flashLight.enabled = !(flashLight.enabled);
-        }
-
-        public override void OnInteractableObjectUngrabbed(InteractableObjectEventArgs e)
-        {
-            base.OnInteractableObjectUngrabbed(e);
+            base.Ungrabbed(previousGrabbingObject);
+            grabbingController = null;
+            objectGrabbed = false;
 
             if (isParented)
                 Unparent();
@@ -86,6 +78,7 @@
         public override void StartUsing(VRTK_InteractUse usingObject)
         {
             base.StartUsing(usingObject);
+            objectUsed = true;
             controllerEvents = usingObject.GetComponent<VRTK_ControllerEvents>();
             thisJoint = GetComponent<ConfigurableJoint>();
         }
@@ -94,41 +87,23 @@
         {
             base.StopUsing(previousUsingObject);
             controllerEvents = null;
+            objectUsed = false;
         }
-
 
         protected override void Update()
         {
-            if (controllerEvents)
+            if (objectUsed)
             {
-                //Adjust position damper when object is grabbed
-                tightness = controllerEvents.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis();
-                NewSlerp(tightness/2f);
-
                 //Parent the object when the trigger is fully pulled
                 if (controllerEvents.GetComponent<VRTK_ControllerEvents>().triggerClicked)
                 {
-                    if (!invertGrip)
-                    {
-                        if (!isParented)
-                            Parent();
-                    }
-                    else
-                    {
-                        if (isParented)
-                            Unparent();
-                    }
+                    if (!isParented)
+                        Parent();
                 }
                 else //unparent when released
                 {
-                    if (!invertGrip)
-                    {
-                        if (isParented)
-                            Unparent();
-                    }
-                    else
-                        if (!isParented)
-                            Parent();
+                    if (isParented)
+                        Unparent();
                 }
 
             }
@@ -137,6 +112,19 @@
                 NewSlerp(0.03f);
             }
 
+            //Turn on the flashlight if a Light component is found in the children
+            if (objectGrabbed)
+            {
+                //Adjust position damper when object is grabbed
+                tightness = grabbingController.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis();
+                NewSlerp(tightness / 2f);
+
+                if (grabbingController.GetComponent<VRTK_ControllerEvents>().touchpadPressed && Time.timeSinceLevelLoad > (lastLightTrigger + 0.4f))
+                {
+                    if (flashLight != null)
+                        TriggerFlashlight();
+                }
+            }
         }
 
         private void Unparent()
@@ -170,6 +158,12 @@
                 thisJointDrive.positionDamper = value;
                 thisJoint.slerpDrive = thisJointDrive;
             }
+        }
+
+        private void TriggerFlashlight()
+        {
+            flashLight.enabled = !(flashLight.enabled);
+            lastLightTrigger = Time.timeSinceLevelLoad;
         }
     }
 }

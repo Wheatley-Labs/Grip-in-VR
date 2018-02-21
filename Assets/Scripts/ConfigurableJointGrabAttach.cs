@@ -49,6 +49,11 @@ namespace VRTK.GrabAttachMechanics
             thisJointDrive.positionDamper = positionDamper;
             thisJoint.slerpDrive = thisJointDrive;
             thisJoint.configuredInWorldSpace = configuredInWorldSpace;
+
+            if (precisionGrab)
+            {
+                thisJoint.connectedAnchor = Vector3.zero;
+            }
         }
     }
 
