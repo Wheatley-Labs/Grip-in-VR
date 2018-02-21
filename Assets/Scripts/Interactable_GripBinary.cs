@@ -22,11 +22,14 @@
         private bool isParented = false;
 
         private float tightness = 0f;
+        private float lastLightTrigger;
         
         private void Start()
         {
             thisRB = GetComponent<Rigidbody>();
+
             flashLight = GetComponentInChildren<Light>();
+            lastLightTrigger = Time.timeSinceLevelLoad;
         }
 
         public override void OnInteractableObjectGrabbed(InteractableObjectEventArgs e)
@@ -46,7 +49,12 @@
 
             if (invertGrip)
             {
-                StartCoroutine(InverseInitialization());
+                //StartCoroutine(InverseInitialization());
+            }
+
+            if (GetComponent<VRTK_ControllerEvents>().touchpadPressed && Time.time > (lastLightTrigger + 1f))
+            {
+                TriggerFlashlight();
             }
         }
 
@@ -57,6 +65,11 @@
 
             //then parent the object
             Parent();
+        }
+
+        private void TriggerFlashlight()
+        {
+            flashLight.enabled = !(flashLight.enabled);
         }
 
         public override void OnInteractableObjectUngrabbed(InteractableObjectEventArgs e)
@@ -118,17 +131,6 @@
                             Parent();
                 }
 
-                if (controllerEvents.GetComponent<VRTK_ControllerEvents>().touchpadPressed)
-                {
-                    TriggerLight();
-                }
-
-                //TO DO
-                //
-                // Goes off again, just use on click
-                // also enable when trigger not pressed
-                //
-                //TO DO
             }
             else
             {
@@ -168,11 +170,6 @@
                 thisJointDrive.positionDamper = value;
                 thisJoint.slerpDrive = thisJointDrive;
             }
-        }
-
-        void TriggerLight()
-        {
-            flashLight.enabled = !(flashLight.enabled);
         }
     }
 }
