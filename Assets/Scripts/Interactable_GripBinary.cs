@@ -28,17 +28,21 @@
         private bool isParented = false;
 
         private float tightness = 0f;
+        public float defaultDangelingDamper = 0.03f;
         private float lastLightTrigger;
-        
+
+        protected override void Awake()
+        {
+            if (triggerToGrab)
+                grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerTouch;
+        }
+
         private void Start()
         {
             thisRB = GetComponent<Rigidbody>();
 
             flashLight = GetComponentInChildren<Light>();
             lastLightTrigger = Time.timeSinceLevelLoad;
-
-            if (triggerToGrab)
-                grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerTouch;
 
             if (hideController)
                 GetComponent<VRTK_InteractControllerAppearance>().hideControllerOnGrab = true;
@@ -117,7 +121,12 @@
             {
                 //Adjust position damper when object is grabbed
                 tightness = grabbingController.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis();
-                NewSlerp(tightness / 2f);
+                if (tightness < 0.2f)
+                    NewSlerp(defaultDangelingDamper);
+                else if (tightness < 0.7)
+                    NewSlerp((tightness * tightness) /2);
+                else
+                    NewSlerp(tightness / 2);
 
                 if (grabbingController.GetComponent<VRTK_ControllerEvents>().touchpadPressed && Time.timeSinceLevelLoad > (lastLightTrigger + 0.4f))
                 {

@@ -21,8 +21,10 @@ namespace VRTK.GrabAttachMechanics
         public ConfigurableJointMotion zMotion = ConfigurableJointMotion.Locked;
         [Tooltip("Should the connectedAnchor be calculated automatically?")]
         public bool autoConfigureConnectedAnchor = false;
+        [Tooltip("The Vector3 position of the anchor.")]
+        public Vector3 anchor = new Vector3(0f, -0.00f, 0.00f);
         [Tooltip("The Vector3 position of the connected anchor.")]
-        public Vector3 connectedAnchor = new Vector3(0f, -0.06f, 0.05f);
+        public Vector3 connectedAnchor = new Vector3(0f, -0.00f, 0.00f);
         [Tooltip("The strength of the dangeling damping.")]
         public float positionDamper = 0.03f;
         [Tooltip("Whether the joint is configured in World Space.")]
@@ -34,6 +36,7 @@ namespace VRTK.GrabAttachMechanics
             givenJoint.breakForce = (grabbedObjectScript.IsDroppable() ? breakForce : Mathf.Infinity);
             givenJoint.autoConfigureConnectedAnchor = autoConfigureConnectedAnchor;
             givenJoint.connectedAnchor = connectedAnchor;
+            givenJoint.anchor = anchor;
             base.CreateJoint(obj);
             ConfigureJoint();
         }
@@ -53,6 +56,7 @@ namespace VRTK.GrabAttachMechanics
             if (precisionGrab)
             {
                 thisJoint.connectedAnchor = Vector3.zero;
+                thisJoint.anchor = Vector3.zero;
             }
         }
     }
