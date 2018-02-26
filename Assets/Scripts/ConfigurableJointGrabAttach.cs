@@ -35,6 +35,12 @@ namespace VRTK.GrabAttachMechanics
             givenJoint = obj.AddComponent<ConfigurableJoint>();
             givenJoint.breakForce = (grabbedObjectScript.IsDroppable() ? breakForce : Mathf.Infinity);
             givenJoint.autoConfigureConnectedAnchor = autoConfigureConnectedAnchor;
+
+            if (precisionGrab)
+            {
+                connectedAnchor = Vector3.zero;
+                anchor = obj.transform.InverseTransformPoint(controllerAttachPoint.position);
+            }
             givenJoint.connectedAnchor = connectedAnchor;
             givenJoint.anchor = anchor;
             base.CreateJoint(obj);
@@ -52,12 +58,6 @@ namespace VRTK.GrabAttachMechanics
             thisJointDrive.positionDamper = positionDamper;
             thisJoint.slerpDrive = thisJointDrive;
             thisJoint.configuredInWorldSpace = configuredInWorldSpace;
-
-            if (precisionGrab)
-            {
-                thisJoint.connectedAnchor = Vector3.zero;
-                thisJoint.anchor = Vector3.zero;
-            }
         }
     }
 
