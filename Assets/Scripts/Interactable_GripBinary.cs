@@ -13,6 +13,7 @@
     {
         public bool gravityPull = true;
         public bool triggerToGrab = false;
+        public bool gripToTighten = false;
         public bool hideController = false;
 
         private VRTK_ControllerEvents controllerEvents;
@@ -33,6 +34,12 @@
 
         protected override void Awake()
         {
+            if (gripToTighten)
+            {
+                triggerToGrab = true;
+                useOverrideButton = VRTK_ControllerEvents.ButtonAlias.GripPress;
+            }
+
             if (triggerToGrab)
                 grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerTouch;
         }
@@ -99,25 +106,33 @@
             if (objectUsed)
             {
                 //Parent the object when the trigger is fully pulled
-                if (controllerEvents.GetComponent<VRTK_ControllerEvents>().triggerClicked)
+                if (!gripToTighten)
                 {
-                    if (!isParented)
-                        Parent();
+                    if (controllerEvents.GetComponent<VRTK_ControllerEvents>().triggerClicked)
+                    {
+                        if (!isParented)
+                            Parent();
+                    }
+                    else //unparent when released
+                    {
+                        if (isParented)
+                            Unparent();
+                    }
                 }
-                else //unparent when released
+                else
                 {
-                    if (isParented)
-                        Unparent();
+                    if (controllerEvents.GetComponent<VRTK_ControllerEvents>().gripPressed)
+                    {
+                        if (!isParented)
+                            Parent();
+                    }
                 }
-
             }
-            else
-            {
-                NewSlerp(0.03f);
-            }
+            else if (isParented && gripToTighten)
+                Unparent();
 
-            //Turn on the flashlight if a Light component is found in the children
-            if (objectGrabbed)
+            //Adjust damper
+            if (objectGrabbed && !gripToTighten)
             {
                 //Adjust position damper when object is grabbed
                 tightness = grabbingController.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis();
@@ -128,6 +143,7 @@
                 else
                     NewSlerp(tightness / 2);
 
+                //Turn on the flashlight if a Light component is found in the children
                 if (grabbingController.GetComponent<VRTK_ControllerEvents>().touchpadPressed && Time.timeSinceLevelLoad > (lastLightTrigger + 0.4f))
                 {
                     if (flashLight != null)

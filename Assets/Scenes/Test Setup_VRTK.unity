@@ -2681,6 +2681,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 0
   triggerToGrab: 0
+  gripToTighten: 0
   hideController: 0
   defaultDangelingDamper: 0.03
 --- !u!54 &120845444
@@ -4273,6 +4274,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 1
   triggerToGrab: 0
+  gripToTighten: 0
   hideController: 0
   defaultDangelingDamper: 0.03
 --- !u!114 &259606270
@@ -4552,6 +4554,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 1
   triggerToGrab: 1
+  gripToTighten: 0
   hideController: 0
   defaultDangelingDamper: 0.03
 --- !u!54 &266529048
@@ -6173,6 +6176,136 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 364257126}
   m_Mesh: {fileID: 4300050, guid: dc448891465e9634d8fee26469be7a02, type: 3}
+--- !u!43 &366677953
+Mesh:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 8
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 24
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 8
+    localAABB:
+      m_Center: {x: 0, y: 0.01, z: 0}
+      m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
+  m_Skin: []
+  m_VertexData:
+    m_CurrentChannels: 13
+    m_VertexCount: 8
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 288
+    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0.01, z: 0}
+    m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshOptimized: 0
 --- !u!1 &371539234
 GameObject:
   m_ObjectHideFlags: 0
@@ -7125,6 +7258,39 @@ Transform:
   m_Father: {fileID: 498420906}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 26.31, z: 0}
+--- !u!21 &417846730
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &419092813
 GameObject:
   m_ObjectHideFlags: 0
@@ -8477,8 +8643,9 @@ MonoBehaviour:
   useOverrideButton: 0
   allowedUseControllers: 0
   usingState: 0
-  gravityPull: 0
+  gravityPull: 1
   triggerToGrab: 0
+  gripToTighten: 1
   hideController: 1
   defaultDangelingDamper: 0.03
 --- !u!54 &498420910
@@ -10715,6 +10882,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 0
   triggerToGrab: 1
+  gripToTighten: 0
   hideController: 1
   defaultDangelingDamper: 0.03
 --- !u!54 &617071238
@@ -12237,6 +12405,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 1
   triggerToGrab: 1
+  gripToTighten: 0
   hideController: 0
   defaultDangelingDamper: 0.03
 --- !u!54 &691269418
@@ -18320,6 +18489,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 0
   triggerToGrab: 1
+  gripToTighten: 0
   hideController: 1
   defaultDangelingDamper: 0.03
 --- !u!114 &1116689553
@@ -22064,39 +22234,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1335734673}
   m_Mesh: {fileID: 4300016, guid: c78e91135a256b443a3d6ddd320bdea4, type: 3}
---- !u!21 &1338624482
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1340332301
 GameObject:
   m_ObjectHideFlags: 0
@@ -22556,6 +22693,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 1
   triggerToGrab: 0
+  gripToTighten: 0
   hideController: 0
   defaultDangelingDamper: 0.03
 --- !u!54 &1359188215
@@ -24837,6 +24975,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 1
   triggerToGrab: 0
+  gripToTighten: 0
   hideController: 1
   defaultDangelingDamper: 0.03
 --- !u!54 &1529301041
@@ -25106,6 +25245,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 1
   triggerToGrab: 0
+  gripToTighten: 0
   hideController: 0
   defaultDangelingDamper: 0.03
 --- !u!54 &1530474195
@@ -25826,6 +25966,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 1
   triggerToGrab: 1
+  gripToTighten: 0
   hideController: 1
   defaultDangelingDamper: 0.03
 --- !u!54 &1543666865
@@ -26250,6 +26391,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 0
   triggerToGrab: 1
+  gripToTighten: 0
   hideController: 1
   defaultDangelingDamper: 0.03
 --- !u!54 &1565114732
@@ -27937,6 +28079,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 0
   triggerToGrab: 1
+  gripToTighten: 0
   hideController: 1
   defaultDangelingDamper: 0.03
 --- !u!54 &1668586477
@@ -28191,6 +28334,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 1
   triggerToGrab: 1
+  gripToTighten: 0
   hideController: 0
   defaultDangelingDamper: 0.03
 --- !u!54 &1685408762
@@ -29205,6 +29349,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 0
   triggerToGrab: 0
+  gripToTighten: 0
   hideController: 1
   defaultDangelingDamper: 0.03
 --- !u!54 &1729732082
@@ -29263,136 +29408,6 @@ Transform:
   m_Father: {fileID: 1729732078}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1731610280
-Mesh:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  serializedVersion: 8
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 24
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 8
-    localAABB:
-      m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
-  m_Skin: []
-  m_VertexData:
-    m_CurrentChannels: 13
-    m_VertexCount: 8
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 28
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 288
-    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshOptimized: 0
 --- !u!1 &1734653165
 GameObject:
   m_ObjectHideFlags: 0
@@ -33031,6 +33046,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 0
   triggerToGrab: 0
+  gripToTighten: 0
   hideController: 1
   defaultDangelingDamper: 0.03
 --- !u!54 &1895049055
@@ -35412,6 +35428,7 @@ MonoBehaviour:
   usingState: 0
   gravityPull: 1
   triggerToGrab: 0
+  gripToTighten: 0
   hideController: 0
   defaultDangelingDamper: 0.03
 --- !u!54 &2051712795
@@ -36657,11 +36674,11 @@ Prefab:
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1731610280}
+      objectReference: {fileID: 366677953}
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1338624482}
+      objectReference: {fileID: 417846730}
     - target: {fileID: 2008320, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: near clip plane
       value: 0.01
