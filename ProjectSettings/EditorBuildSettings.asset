@@ -4,4 +4,22 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Binary-Grip_Pretest_0_different-modes.unity
+    guid: fdcc69148e20d554f9629864a9510711
+  - enabled: 1
+    path: Assets/Scenes/Binary-Grip_Pretest_1_Baseline.unity
+    guid: 777ff73d0348d3c4c87f19fad5240645
+  - enabled: 1
+    path: Assets/Scenes/Binary-Grip_Pretest_2_No-Gravity.unity
+    guid: 8078cc4aa65ec324da35c4fa8c04c555
+  - enabled: 1
+    path: Assets/Scenes/Binary-Grip_Pretest_3_Grip-Anchor.unity
+    guid: 4f43f658eefab87469f3b4d7c8b22700
+  - enabled: 1
+    path: Assets/Scenes/Binary-Grip_Pretest_4_Trigger-Precision.unity
+    guid: 8a04301b3a0b3374d9a2adfeba6d3e8c
+  - enabled: 1
+    path: Assets/Scenes/Binary-Grip_Pretest_5_Only-Trigger.unity
+    guid: 898a05cc718805b46969a73fa50e7479
