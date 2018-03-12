@@ -142,13 +142,12 @@
                     NewSlerp((tightness * tightness) /2);
                 else
                     NewSlerp(tightness / 2);
-
-                //Turn on the flashlight if a Light component is found in the children
-                if (grabbingController.GetComponent<VRTK_ControllerEvents>().touchpadPressed && Time.timeSinceLevelLoad > (lastLightTrigger + 0.4f))
-                {
-                    if (flashLight != null)
-                        TriggerFlashlight();
-                }
+            }
+            //Turn on the flashlight if a Light component is found in the children
+            if (objectGrabbed && grabbingController.GetComponent<VRTK_ControllerEvents>().touchpadPressed && Time.timeSinceLevelLoad > (lastLightTrigger + 0.4f))
+            {
+                if (flashLight != null)
+                    TriggerFlashlight();
             }
         }
 
