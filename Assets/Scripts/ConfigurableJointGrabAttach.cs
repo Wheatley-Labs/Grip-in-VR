@@ -41,8 +41,10 @@ namespace VRTK.GrabAttachMechanics
                 connectedAnchor = Vector3.zero;
                 anchor = obj.transform.InverseTransformPoint(controllerAttachPoint.position);
             }
+            
             givenJoint.connectedAnchor = connectedAnchor;
             givenJoint.anchor = anchor;
+
             base.CreateJoint(obj);
             ConfigureJoint();
         }
@@ -58,6 +60,11 @@ namespace VRTK.GrabAttachMechanics
             thisJointDrive.positionDamper = positionDamper;
             thisJoint.slerpDrive = thisJointDrive;
             thisJoint.configuredInWorldSpace = configuredInWorldSpace;
+
+            if (precisionButCentered)
+            {
+                 thisJoint.anchor =  new Vector3 (0f, thisJoint.anchor.y, 0f);
+            }
         }
     }
 
