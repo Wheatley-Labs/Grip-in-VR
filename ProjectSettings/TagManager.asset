@@ -8,6 +8,8 @@ TagManager:
   - Left Controller
   - Grab
   - Grabbable
+  - ExcludeTeleport
+  - Pokal
   layers:
   - Default
   - TransparentFX
