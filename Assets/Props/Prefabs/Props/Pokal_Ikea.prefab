@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1571093323550380}
   m_IsPrefabParent: 1
+--- !u!1 &1362173978569622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4671218358112222}
+  - component: {fileID: 54609168547300580}
+  m_Layer: 0
+  m_Name: Center of Mass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1571093323550380
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,6 +42,7 @@ GameObject:
   - component: {fileID: 114026545792040648}
   - component: {fileID: 114625867611125712}
   - component: {fileID: 114888239383324318}
+  - component: {fileID: 65691180173894318}
   m_Layer: 0
   m_Name: Pokal_Ikea
   m_TagString: Untagged
@@ -39,11 +56,25 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1571093323550380}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -7.750231, y: 6.7664075, z: -21.69982}
+  m_LocalScale: {x: 7.1428556, y: 7.1428576, z: 7.1428556}
+  m_Children:
+  - {fileID: 4671218358112222}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4671218358112222
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362173978569622}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4534125798751702}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23226748163105766
@@ -95,7 +126,22 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1571093323550380}
   serializedVersion: 2
-  m_Mass: 0.7
+  m_Mass: 0.2
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!54 &54609168547300580
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362173978569622}
+  serializedVersion: 2
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -111,12 +157,24 @@ MeshCollider:
   m_GameObject: {fileID: 1571093323550380}
   m_Material: {fileID: 13400000, guid: 94153982f858de545ae3530ead6822d1, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 14a36bca7ba8e1549b3d2e572455ac79, type: 3}
+--- !u!65 &65691180173894318
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1571093323550380}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10800005, y: 0.16800004, z: 0.10800005}
+  m_Center: {x: -0.00000023841858, y: 0.08408265, z: 0.00000023841858}
 --- !u!114 &114026545792040648
 MonoBehaviour:
   m_ObjectHideFlags: 1

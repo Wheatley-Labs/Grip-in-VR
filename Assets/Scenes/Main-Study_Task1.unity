@@ -430,7 +430,7 @@ Transform:
   m_GameObject: {fileID: 59574503}
   m_LocalRotation: {x: -0.7071069, y: -0, z: -0, w: 0.70710677}
   m_LocalPosition: {x: 10.012584, y: 9.9548645, z: -0.29007885}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.15, z: 1}
   m_Children:
   - {fileID: 1851153521}
   m_Father: {fileID: 433857873}
@@ -507,7 +507,7 @@ Transform:
   m_GameObject: {fileID: 62629003}
   m_LocalRotation: {x: -0.7071069, y: -0, z: -0, w: 0.70710677}
   m_LocalPosition: {x: 4.0206122, y: 11.933598, z: -0.32814476}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.15, z: 1}
   m_Children:
   - {fileID: 764769615}
   - {fileID: 1742936690}
@@ -1050,7 +1050,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.0758014, y: 1.6422001, z: 0.17500103}
+  m_ConnectedAnchor: {x: -1.027082, y: 1.6422001, z: 0.17500103}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1922,7 +1922,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.0758014, y: 1.6421996, z: -0.65922534}
+  m_ConnectedAnchor: {x: -1.0270815, y: 1.6421996, z: -0.65922534}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -2659,7 +2659,7 @@ Transform:
   m_GameObject: {fileID: 388584645}
   m_LocalRotation: {x: -0.7071069, y: -0, z: -0, w: 0.70710677}
   m_LocalPosition: {x: 7.003579, y: 9.978466, z: -0.32814476}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.15, z: 1}
   m_Children:
   - {fileID: 2053899470}
   m_Father: {fileID: 433857873}
@@ -3124,18 +3124,6 @@ Prefab:
     - target: {fileID: 4534125798751702, guid: 0ede1bca37a713d45a69259bc2cdeed8, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534125798751702, guid: 0ede1bca37a713d45a69259bc2cdeed8, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 7.1428556
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534125798751702, guid: 0ede1bca37a713d45a69259bc2cdeed8, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 7.1428576
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534125798751702, guid: 0ede1bca37a713d45a69259bc2cdeed8, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 7.1428556
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ede1bca37a713d45a69259bc2cdeed8, type: 2}
@@ -4223,7 +4211,7 @@ Transform:
   m_GameObject: {fileID: 869067671}
   m_LocalRotation: {x: -0.7071069, y: -0, z: -0, w: 0.70710677}
   m_LocalPosition: {x: -7.9171, y: 11.965797, z: -0.29447243}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.15, z: 1}
   m_Children:
   - {fileID: 328238425}
   - {fileID: 2090938226}
@@ -5151,7 +5139,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 124
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &1044667290
 MonoBehaviour:
@@ -5208,9 +5196,9 @@ ConfigurableJoint:
   m_ConnectedAnchor: {x: -1.2086558, y: 0.112370126, z: -0.2539729}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
-  m_XMotion: 1
+  m_XMotion: 0
   m_YMotion: 1
-  m_ZMotion: 1
+  m_ZMotion: 0
   m_AngularXMotion: 0
   m_AngularYMotion: 0
   m_AngularZMotion: 0
@@ -7968,7 +7956,7 @@ Transform:
   m_GameObject: {fileID: 1608551159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.2}
   m_Children:
   - {fileID: 1720809251}
   - {fileID: 176061664}
