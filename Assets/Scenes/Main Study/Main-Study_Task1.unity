@@ -146,7 +146,7 @@ Transform:
   m_Children:
   - {fileID: 1563706571}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &175734076
 Prefab:
@@ -625,6 +625,17 @@ Prefab:
       propertyPath: m_Name
       value: Pokal_Ikea_counter
       objectReference: {fileID: 0}
+    - target: {fileID: 114074328634002180, guid: 0ede1bca37a713d45a69259bc2cdeed8,
+        type: 2}
+      propertyPath: window
+      value: 
+      objectReference: {fileID: 1699104241738568, guid: 8f328d3322eeb8543a9fd004a1d7e79c,
+        type: 2}
+    - target: {fileID: 114074328634002180, guid: 0ede1bca37a713d45a69259bc2cdeed8,
+        type: 2}
+      propertyPath: stability
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ede1bca37a713d45a69259bc2cdeed8, type: 2}
   m_IsPrefabParent: 0
@@ -979,7 +990,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4310213053491892, guid: 34cf63264dbdee045b2c1c426158e256, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34cf63264dbdee045b2c1c426158e256, type: 2}
@@ -1301,7 +1312,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4217519374461972, guid: 55ae1540028c2ef49a173affa93224a3, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55ae1540028c2ef49a173affa93224a3, type: 2}
