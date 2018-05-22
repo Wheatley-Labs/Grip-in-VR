@@ -199,7 +199,7 @@ public class BreakableWindow : MonoBehaviour {
     {
         if (isBroken == false)
         {
-            if (allreadyCalculated == true)
+            if (allreadyCalculated == true) 
             {
                 splinterParent.SetActive(true);
                 if (addTorques)

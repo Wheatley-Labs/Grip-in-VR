@@ -20,8 +20,10 @@ public class BreakGlass : MonoBehaviour {
 
     private void Break()
     {
+        Vector3 tmpPos = gameObject.transform.position;
+        tmpPos.y += 0.25f;
         GameObject windowInstance;
-        windowInstance = Instantiate(window, gameObject.transform);
+        windowInstance = Instantiate(window, tmpPos, Quaternion.identity);
         //windowInstance.GetComponent<BreakableWindow>().breakWindow();
         Destroy(gameObject);
     }

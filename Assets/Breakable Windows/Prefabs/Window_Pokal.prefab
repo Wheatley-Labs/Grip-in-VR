@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23944570480960398}
   - component: {fileID: 114869803429771094}
   - component: {fileID: 82090383138229694}
+  - component: {fileID: 114554286131036760}
   m_Layer: 0
   m_Name: Window_Pokal
   m_TagString: Untagged
@@ -193,6 +194,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114554286131036760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1699104241738568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27f020e627aa3f42b53ba2fd1562033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114869803429771094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,14 +219,14 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 2
-  partsX: 8
-  partsY: 8
+  partsX: 3
+  partsY: 4
   preCalculate: 1
   addTorques: 1
   hideSplintersInHierarchy: 1
   useCollision: 1
   health: 0
-  destroyPhysicsTime: 10
+  destroyPhysicsTime: 2
   destroyColliderWithPhysics: 1
   destroySplintersTime: 0
   breakingSound: {fileID: 8300000, guid: 5c2f5ca33485fbd42a9e7af0cf292651, type: 3}

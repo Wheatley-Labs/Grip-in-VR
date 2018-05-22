@@ -609,32 +609,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4534125798751702, guid: 0ede1bca37a713d45a69259bc2cdeed8, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 7.142859
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534125798751702, guid: 0ede1bca37a713d45a69259bc2cdeed8, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 7.1428585
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534125798751702, guid: 0ede1bca37a713d45a69259bc2cdeed8, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 7.142859
-      objectReference: {fileID: 0}
     - target: {fileID: 1571093323550380, guid: 0ede1bca37a713d45a69259bc2cdeed8, type: 2}
       propertyPath: m_Name
       value: Pokal_Ikea_counter
-      objectReference: {fileID: 0}
-    - target: {fileID: 114074328634002180, guid: 0ede1bca37a713d45a69259bc2cdeed8,
-        type: 2}
-      propertyPath: window
-      value: 
-      objectReference: {fileID: 1699104241738568, guid: 8f328d3322eeb8543a9fd004a1d7e79c,
-        type: 2}
-    - target: {fileID: 114074328634002180, guid: 0ede1bca37a713d45a69259bc2cdeed8,
-        type: 2}
-      propertyPath: stability
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ede1bca37a713d45a69259bc2cdeed8, type: 2}
