@@ -18,7 +18,7 @@ public class BreakGlass : MonoBehaviour {
             Break();
     }
 
-    private void Break()
+    public void Break()
     {
         Vector3 tmpPos = gameObject.transform.position;
         tmpPos.y += 0.25f;
