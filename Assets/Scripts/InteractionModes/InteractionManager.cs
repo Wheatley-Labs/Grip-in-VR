@@ -10,7 +10,13 @@
 
         private void Start()
         {
+
+        }
+
+        private void OnLevelWasLoaded(int level)
+        {
             SetMode(currentInteractionMode);
+
         }
 
         private void Update()
@@ -63,19 +69,26 @@
                 // ENABLE MODE #1 - BASELINE
                 if (newMode == 1)
                 {
-                    //obj.AddComponent
+                    obj.AddComponent<VRTK_InteractableObject>();
+                    obj.AddComponent<VRTK_FixedJointGrabAttach>();
                 }
 
                 //ENABLE MODE #2 - TIGHTEN WITH GRIP
                 else if (newMode == 2)
                 {
-                    //interactable_GripBinary.gripToTighten = false;
+                    obj.AddComponent<Interactable_GripBinary>();
+                    obj.AddComponent<ConfigurableJointGrabAttach>();
+                    
+                    GetComponent<Interactable_GripBinary>().gripToTighten = true;
                 }
 
                 //ENABLE MODE #3 - ONLY TRIGGER
                 else if (newMode == 3)
                 {
-                    //interactable_GripBinary.gripToTighten = true;
+                    obj.AddComponent<Interactable_GripBinary>();
+                    obj.AddComponent<ConfigurableJointGrabAttach>();
+
+                    GetComponent<Interactable_GripBinary>().gripToTighten = false;
                 }
 
                 else
