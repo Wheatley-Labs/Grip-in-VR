@@ -41,7 +41,7 @@
             }
 
             if (triggerToGrab)
-                grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerTouch;
+                grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerHairline;
         }
 
         private void Start()
@@ -136,7 +136,7 @@
             {
                 //Adjust position damper when object is grabbed
                 tightness = grabbingController.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis();
-                if (tightness < 0.2f)
+                if (tightness < 0.25f)
                     NewSlerp(defaultDangelingDamper);
                 else if (tightness < 0.7)
                     NewSlerp((tightness * tightness) /2);

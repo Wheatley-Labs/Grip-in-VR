@@ -69,26 +69,38 @@
                 // ENABLE MODE #1 - BASELINE
                 if (newMode == 1)
                 {
-                    obj.AddComponent<VRTK_InteractableObject>();
-                    obj.AddComponent<VRTK_FixedJointGrabAttach>();
+                    VRTK_InteractableObject cmp11 = obj.AddComponent<VRTK_InteractableObject>() as VRTK_InteractableObject;
+                    VRTK_FixedJointGrabAttach cmp12 = obj.AddComponent<VRTK_FixedJointGrabAttach>() as VRTK_FixedJointGrabAttach;
+
+                    cmp11.isGrabbable = true;
+                    cmp11.holdButtonToGrab = true;
+                    cmp11.grabAttachMechanicScript = cmp12;
+                    cmp11.isUsable = false;
+
+                    cmp12.precisionGrab = true;
+                    cmp12.precisionButCentered = true;
                 }
 
                 //ENABLE MODE #2 - TIGHTEN WITH GRIP
                 else if (newMode == 2)
                 {
-                    obj.AddComponent<Interactable_GripBinary>();
-                    obj.AddComponent<ConfigurableJointGrabAttach>();
-                    
-                    GetComponent<Interactable_GripBinary>().gripToTighten = true;
+                    Interactable_GripBinary cmp21 = obj.AddComponent<Interactable_GripBinary>() as Interactable_GripBinary;
+                    ConfigurableJointGrabAttach cmp22 = obj.AddComponent<ConfigurableJointGrabAttach>() as ConfigurableJointGrabAttach;
+
+                    ConfigureVariableModes(cmp21, cmp22);
+                    cmp21.gripToTighten = true;
+                    ConfigureAnchor(cmp22);
                 }
 
                 //ENABLE MODE #3 - ONLY TRIGGER
                 else if (newMode == 3)
                 {
-                    obj.AddComponent<Interactable_GripBinary>();
-                    obj.AddComponent<ConfigurableJointGrabAttach>();
+                    Interactable_GripBinary cmp31 = obj.AddComponent<Interactable_GripBinary>() as Interactable_GripBinary;
+                    ConfigurableJointGrabAttach cmp32 = obj.AddComponent<ConfigurableJointGrabAttach>() as ConfigurableJointGrabAttach;
 
-                    GetComponent<Interactable_GripBinary>().gripToTighten = false;
+                    ConfigureVariableModes(cmp31, cmp32);
+                    cmp31.gripToTighten = false;
+                    ConfigureAnchor(cmp32);
                 }
 
                 else
@@ -96,6 +108,31 @@
                     Debug.Log("No Interaction Mode specified");
                     return;
                 }
+            }
+        }
+
+        private void ConfigureVariableModes(Interactable_GripBinary cmpx1, ConfigurableJointGrabAttach cmpx2)
+        {
+            cmpx1.isGrabbable = true;
+            cmpx1.holdButtonToGrab = true;
+            cmpx1.grabAttachMechanicScript = cmpx2;
+            cmpx1.isUsable = true;
+            cmpx1.holdButtonToUse = true;
+            cmpx1.useOnlyIfGrabbed = true;
+            cmpx1.gravityPull = true;
+            cmpx1.triggerToGrab = true;
+            
+            cmpx2.precisionGrab = true;
+            cmpx2.precisionButCentered = true;
+        }
+
+        private void ConfigureAnchor(ConfigurableJointGrabAttach cmp)
+        {
+            if (cmp.gameObject.name.Contains("Pokal"))
+            {
+                cmp.anchor.y = 0.13f;
+                cmp.connectedAnchor.y = -0.04f;
+                cmp.connectedAnchor.z = 0.025f;
             }
         }
     }
