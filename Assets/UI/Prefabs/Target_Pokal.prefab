@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114445997675926824}
   - component: {fileID: 114416064146070280}
   m_Layer: 0
-  m_Name: Target
+  m_Name: Target_Pokal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

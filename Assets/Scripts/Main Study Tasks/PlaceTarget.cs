@@ -14,7 +14,7 @@ public class PlaceTarget : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Pokal"))
+        if (other.CompareTag("Pokal") || other.CompareTag("Cup"))
         {
             targetAnimator.SetBool("success", true);
             scoreCounter.UpdateScore(true);
@@ -23,7 +23,7 @@ public class PlaceTarget : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Pokal"))
+        if (other.CompareTag("Pokal") || other.CompareTag("Cup"))
         {
             targetAnimator.SetBool("success", false);
             scoreCounter.UpdateScore(false);

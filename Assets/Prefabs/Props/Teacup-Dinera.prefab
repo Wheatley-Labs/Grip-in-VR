@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114963592804487880}
   - component: {fileID: 114162665803929114}
   - component: {fileID: 114102367404300604}
+  - component: {fileID: 114452252120430940}
   m_Layer: 0
   m_Name: Teacup-Dinera
   m_TagString: Grabbable
@@ -51,6 +52,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1958002584426500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4461265312785230}
+  - component: {fileID: 65065676268163580}
+  m_Layer: 0
+  m_Name: Center of Mass
+  m_TagString: Cup
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4461265312785230
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958002584426500}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0357, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4764420242588666}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4464618321028166
 Transform:
   m_ObjectHideFlags: 1
@@ -70,11 +100,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1723647688083886}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -5.483587, y: 6.766409, z: -21.92021}
-  m_LocalScale: {x: 7.407412, y: 7.4074063, z: 7.407412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8444153, y: 0.91346526, z: -0.12970924}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4464618321028166}
+  - {fileID: 4461265312785230}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -205,6 +236,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 814e28ce31ac00447b90728f7e49cd3a, type: 3}
+--- !u!65 &65065676268163580
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958002584426500}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04, y: 0.001, z: 0.04}
+  m_Center: {x: 0, y: -0.035, z: 0}
 --- !u!114 &114102367404300604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,6 +311,18 @@ MonoBehaviour:
   gripToTighten: 1
   hideController: 1
   defaultDangelingDamper: 0.03
+--- !u!114 &114452252120430940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723647688083886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78867b581205394479b1600ad53969ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centerOfMass: {fileID: 1958002584426500}
 --- !u!114 &114963592804487880
 MonoBehaviour:
   m_ObjectHideFlags: 1
