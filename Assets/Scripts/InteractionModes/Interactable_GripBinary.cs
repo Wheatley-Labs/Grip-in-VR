@@ -39,9 +39,11 @@
                 triggerToGrab = true;
                 useOverrideButton = VRTK_ControllerEvents.ButtonAlias.GripPress;
             }
+            else
+                useOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerTouch;
 
             if (triggerToGrab)
-                grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerHairline;
+                grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerTouch;
         }
 
         private void Start()
