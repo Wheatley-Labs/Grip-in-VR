@@ -28,7 +28,7 @@
             }
         }
 
-        /*
+        
         // Destroy the game object when being placed in a blocked area
         private void OnTriggerStay(Collider other)
         {
@@ -42,6 +42,6 @@
                         Destroy(other);
                 }
         }
-        }*/
+        }
     }
 }
