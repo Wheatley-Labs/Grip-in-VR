@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using VRTK.Examples;
 
-public class ScoreCounter : MonoBehaviour {
+public class ScoreCounter : MonoBehaviour
+{
     public int score = 0;
 
     private Text text;
-    private Color targetCyan = new Color32(137,255,255,226);
+    private Color targetCyan = new Color32(137, 255, 255, 226);
     private Color successGreen = new Color32(54, 255, 54, 226);
+
+    public SessionManager sessionManager;
 
     private void Start()
     {
@@ -34,6 +38,7 @@ public class ScoreCounter : MonoBehaviour {
         {
             text.color = successGreen;
             text.text = score + " von 10";
+            sessionManager.LevelFinished();
         }
     }
 }

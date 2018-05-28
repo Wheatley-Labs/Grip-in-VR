@@ -11,6 +11,7 @@ TagManager:
   - ExcludeTeleport
   - Pokal
   - Cup
+  - ExperimentManager
   layers:
   - Default
   - TransparentFX

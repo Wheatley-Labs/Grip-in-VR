@@ -16,7 +16,10 @@
         {
             if (other.CompareTag("Grabbable"))
             {
-                meshRend.enabled = true;
+                if (other.GetComponent<Interactable_GripBinary>().IsGrabbed())
+                {
+                    meshRend.enabled = true;
+                }
             }
         }
 

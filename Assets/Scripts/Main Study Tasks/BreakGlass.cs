@@ -24,7 +24,7 @@ public class BreakGlass : MonoBehaviour {
         tmpPos.y += 0.25f;
         GameObject windowInstance;
         windowInstance = Instantiate(window, tmpPos, Quaternion.identity);
-        //windowInstance.GetComponent<BreakableWindow>().breakWindow();
+        GameObject.FindGameObjectWithTag("ExperimentManager").GetComponent<SessionManager>().LevelFailed();
         Destroy(gameObject);
     }
 }
