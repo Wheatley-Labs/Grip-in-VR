@@ -7,6 +7,7 @@ using VRTK.Examples;
 public class ScoreCounter : MonoBehaviour
 {
     public int score = 0;
+    public int maxScore = 10;
 
     private Text text;
     private Color targetCyan = new Color32(137, 255, 255, 226);
@@ -19,7 +20,7 @@ public class ScoreCounter : MonoBehaviour
         text = GetComponent<Text>();
 
         text.color = targetCyan;
-        text.text = " " + score + " von 10";
+        text.text = " " + score + " von " + maxScore;
     }
 
     public void UpdateScore(bool increase)
@@ -29,15 +30,15 @@ public class ScoreCounter : MonoBehaviour
         else
             score -= 1;
 
-        if (score < 10)
+        if (score < maxScore)
         {
             text.color = targetCyan;
-            text.text = " " + score + " von 10";
+            text.text = " " + score + " von " + maxScore;
         }
         else
         {
             text.color = successGreen;
-            text.text = score + " von 10";
+            text.text = score + " von " + maxScore;
             sessionManager.LevelFinished();
         }
     }

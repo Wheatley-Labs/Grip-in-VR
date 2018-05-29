@@ -26,9 +26,27 @@ GameObject:
   - component: {fileID: 114105714671395042}
   - component: {fileID: 114348344451644316}
   - component: {fileID: 114752655506520448}
+  - component: {fileID: 114149263089927566}
+  - component: {fileID: 114244258135999788}
   m_Layer: 0
   m_Name: Carafe1_Stockholm_Ikea
   m_TagString: Grabbable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1549613787148668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4657025071403904}
+  - component: {fileID: 65376658396548616}
+  m_Layer: 0
+  m_Name: Center of Mass
+  m_TagString: Carafe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,11 +57,25 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1533835657705742}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.167, y: 0.018899918, z: 0.2929}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4657025071403904}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4657025071403904
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549613787148668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0470891, y: 0.91346526, z: -0.10249066}
+  m_LocalPosition: {x: 0, y: 0.1554, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4022498073621968}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23872928188320400
@@ -95,7 +127,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1533835657705742}
   serializedVersion: 2
-  m_Mass: 2
+  m_Mass: 0.5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -117,6 +149,18 @@ MeshCollider:
   m_CookingOptions: -1
   m_SkinWidth: 0.001
   m_Mesh: {fileID: 4300000, guid: e014e12946bcf374ba4e557918e143f2, type: 3}
+--- !u!65 &65376658396548616
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549613787148668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04, y: 0.001, z: 0.04}
+  m_Center: {x: 0, y: -0.153, z: 0}
 --- !u!114 &114105714671395042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -134,6 +178,31 @@ MonoBehaviour:
   hideDelayOnGrab: 0
   hideControllerOnUse: 0
   hideDelayOnUse: 0
+--- !u!114 &114149263089927566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1533835657705742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78867b581205394479b1600ad53969ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centerOfMass: {fileID: 1549613787148668}
+--- !u!114 &114244258135999788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1533835657705742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65594df4f3ee06f4ea87341903b63777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 1699104241738568, guid: e9af86a0ed1c6db458bbe561760bb85b, type: 2}
+  stability: 3
 --- !u!114 &114348344451644316
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -12,6 +12,7 @@ TagManager:
   - Pokal
   - Cup
   - ExperimentManager
+  - Carafe
   layers:
   - Default
   - TransparentFX
