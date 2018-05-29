@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Study/Main-Study_Task2.unity
     guid: 00d5b8d64c331954d94f67a4f6892e9a
+  - enabled: 1
+    path: Assets/Scenes/Main Study/Main-Study_Task3.unity
+    guid: 55b191d844daa334390cc218ce5b3c29
   m_configObjects: {}
