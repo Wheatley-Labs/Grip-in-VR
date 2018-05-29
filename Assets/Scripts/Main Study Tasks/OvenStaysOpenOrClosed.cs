@@ -13,10 +13,10 @@ public class OvenStaysOpenOrClosed : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (gameObject.transform.localEulerAngles.x > 330)
+        if (gameObject.transform.localEulerAngles.x > 320)
             force.torque = Vector3.back /2;
 
-        else if (gameObject.transform.localEulerAngles.x < 280)
+        else if (gameObject.transform.localEulerAngles.x < 290)
             force.torque = Vector3.forward /2;
 
         else
