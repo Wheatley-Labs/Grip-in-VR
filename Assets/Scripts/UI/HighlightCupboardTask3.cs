@@ -4,12 +4,11 @@
     using System.Collections.Generic;
     using UnityEngine;
     
-    public class HighlightCupboard : MonoBehaviour
+    public class HighlightCupboardTask3 : MonoBehaviour
     {
         private Animator animator;
         public GameObject otherDoor;
         private Animator otherAnimator;
-        public HighlightDrawer drawerHighlighter;
         public GameObject TooltipCupboard;
 
         // Use this for initialization
@@ -17,12 +16,12 @@
         {
             animator = GetComponent<Animator>();
             otherAnimator = otherDoor.GetComponent<Animator>();
-
-            StartHighlighting();
         }
 
         public void StartHighlighting()
         {
+            TooltipCupboard.SetActive(true);
+
             animator.SetBool("highlight", true);
             otherAnimator.SetBool("highlight", true);
         }
@@ -32,13 +31,12 @@
             animator.SetBool("highlight", false);
             otherAnimator.SetBool("highlight", false);
             TooltipCupboard.SetActive(false);
-            drawerHighlighter.StartHighlighting();
 
             yield return new WaitForSeconds(2f);
             animator.enabled = false;
             otherAnimator.enabled = false;
             
-            Destroy(GetComponent<HighlightCupboard>());
+            Destroy(GetComponent<HighlightCupboardTask3>());
         }
         private void Update()
         {

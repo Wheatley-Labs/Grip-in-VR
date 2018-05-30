@@ -20,7 +20,7 @@ public class ScoreCounter : MonoBehaviour
         text = GetComponent<Text>();
 
         text.color = targetCyan;
-        text.text = " " + score + " von " + maxScore;
+        text.text = score + " von " + maxScore;
     }
 
     public void UpdateScore(bool increase)
@@ -33,7 +33,7 @@ public class ScoreCounter : MonoBehaviour
         if (score < maxScore)
         {
             text.color = targetCyan;
-            text.text = " " + score + " von " + maxScore;
+            text.text = score + " von " + maxScore;
         }
         else
         {

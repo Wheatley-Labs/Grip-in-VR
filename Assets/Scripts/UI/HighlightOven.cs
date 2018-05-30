@@ -3,46 +3,43 @@
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
+    using UnityEngine.UI;
     
-    public class HighlightCupboard : MonoBehaviour
+    public class HighlightOven : MonoBehaviour
     {
+        public GameObject tooltipOven;
+        public Text scoreText;
         private Animator animator;
-        public GameObject otherDoor;
-        private Animator otherAnimator;
-        public HighlightDrawer drawerHighlighter;
-        public GameObject TooltipCupboard;
+        public GameObject cupboardHighlighter;
 
         // Use this for initialization
         void Start()
         {
             animator = GetComponent<Animator>();
-            otherAnimator = otherDoor.GetComponent<Animator>();
-
             StartHighlighting();
         }
 
         public void StartHighlighting()
         {
             animator.SetBool("highlight", true);
-            otherAnimator.SetBool("highlight", true);
+            tooltipOven.SetActive(true);
         }
 
         public IEnumerator StopHighlighting()
         {
             animator.SetBool("highlight", false);
-            otherAnimator.SetBool("highlight", false);
-            TooltipCupboard.SetActive(false);
-            drawerHighlighter.StartHighlighting();
+            scoreText.enabled = true;
 
             yield return new WaitForSeconds(2f);
             animator.enabled = false;
-            otherAnimator.enabled = false;
-            
-            Destroy(GetComponent<HighlightCupboard>());
+            tooltipOven.SetActive(false);
+            cupboardHighlighter.GetComponent<HighlightCupboardTask3>().StartHighlighting();
+            Destroy(GetComponent<HighlightOven>());
         }
+
         private void Update()
         {
-            if (transform.localEulerAngles.y > 60 && otherDoor.transform.localEulerAngles.y < 290 && otherDoor.transform.localEulerAngles.y > 100)
+            if (gameObject.transform.localEulerAngles.x > 320)
             {
                 StartCoroutine("StopHighlighting");
             }

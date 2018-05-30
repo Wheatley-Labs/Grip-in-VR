@@ -8,6 +8,7 @@ public class SessionManager : MonoBehaviour {
     public GameObject continueButton;
     public Material activeMaterial;
 
+    public int error = 0;
     public GameObject failedTooltip;
 
     // Use this for initialization
@@ -32,5 +33,13 @@ public class SessionManager : MonoBehaviour {
     public void LevelFailed()
     {
         failedTooltip.SetActive(true);
+    }
+
+    public void AddError()
+    {
+        error += 1;
+
+        if (error == 3)
+            LevelFailed();
     }
 }
