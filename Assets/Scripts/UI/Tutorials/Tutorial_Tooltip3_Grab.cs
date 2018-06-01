@@ -9,13 +9,14 @@ public class Tutorial_Tooltip3_Grab : MonoBehaviour {
     public GameObject nextTooltipModeA;
     public GameObject nextTooltipModeB;
     public GameObject nextTooltipModeC;
-    public VRTK_InteractableObject glass;
+    public GameObject glass;
     public GameObject ContrL;
     public GameObject ContrR;
 
 	// Use this for initialization
 	void Start () {
-        glass.gameObject.SetActive(true);
+        glass.SetActive(true);
+        interactionManager.SetMode(interactionManager.currentInteractionMode);
 
         ContrL.GetComponent<VRTK_ControllerHighlighter>().HighlightElement(SDK_BaseController.ControllerElements.Trigger, Color.cyan, 1f);
         ContrR.GetComponent<VRTK_ControllerHighlighter>().HighlightElement(SDK_BaseController.ControllerElements.Trigger, Color.cyan, 1f);
@@ -26,7 +27,7 @@ public class Tutorial_Tooltip3_Grab : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (glass.IsGrabbed())
+        if (glass.GetComponent<VRTK_InteractableObject>().IsGrabbed())
         {
             ContrL.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.Trigger);
             ContrR.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.Trigger);

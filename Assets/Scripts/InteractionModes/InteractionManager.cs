@@ -92,6 +92,7 @@
 
                     ConfigureVariableModes(cmp21, cmp22);
                     cmp21.gripToTighten = true;
+                    cmp21.useOverrideButton = VRTK_ControllerEvents.ButtonAlias.GripPress;
                     ConfigureAnchor(cmp22);
                 }
 
