@@ -3,10 +3,11 @@
     using System.Collections.Generic;
     using UnityEngine;
     using VRTK.GrabAttachMechanics;
+    using UnityEngine.UI;
 
     public class InteractionManager : MonoBehaviour {
 
-        static public int currentInteractionMode = 2;
+        public int currentInteractionMode = 2;
 
         private void Start()
         {
@@ -42,6 +43,8 @@
 
         public void SetMode(int newMode)
         {
+            GetComponentInChildren<Text>().text = "Mode " + currentInteractionMode;
+
             GameObject[] grabbables;
 
             grabbables = GameObject.FindGameObjectsWithTag("Grabbable");
