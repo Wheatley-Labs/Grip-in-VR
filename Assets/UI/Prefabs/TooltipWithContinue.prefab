@@ -470,7 +470,7 @@ MonoBehaviour:
   drawLineTo: {fileID: 0}
   lineWidth: 0
   fontColor: {r: 0.53333336, g: 0.909804, b: 0.91372555, a: 0.69803923}
-  containerColor: {r: 0, g: 0, b: 0, a: 0.4}
+  containerColor: {r: 0, g: 0, b: 0, a: 0.69803923}
   lineColor: {r: 0.53333336, g: 0.909804, b: 0.91372555, a: 1}
   alwaysFaceHeadset: 1
 --- !u!114 &114661689393485970

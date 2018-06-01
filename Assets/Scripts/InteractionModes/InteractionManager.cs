@@ -8,6 +8,7 @@
     public class InteractionManager : MonoBehaviour {
 
         public int currentInteractionMode = 2;
+        private static int handoverInteractionMode = 2;
 
         private void Start()
         {
@@ -16,8 +17,8 @@
 
         private void OnLevelWasLoaded(int level)
         {
+            currentInteractionMode = handoverInteractionMode;
             SetMode(currentInteractionMode);
-
         }
 
         private void Update()
@@ -43,6 +44,7 @@
 
         public void SetMode(int newMode)
         {
+            handoverInteractionMode = newMode;
             GetComponentInChildren<Text>().text = "Mode " + currentInteractionMode;
 
             GameObject[] grabbables;

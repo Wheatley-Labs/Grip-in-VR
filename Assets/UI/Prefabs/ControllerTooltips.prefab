@@ -1601,7 +1601,7 @@ MonoBehaviour:
   buttonOneText: 
   buttonTwoText: 
   startMenuText: 
-  tipBackgroundColor: {r: 0, g: 0, b: 0, a: 0.4627451}
+  tipBackgroundColor: {r: 0, g: 0, b: 0, a: 0.69803923}
   tipTextColor: {r: 0.54509807, g: 0.9333334, b: 0.9333334, a: 1}
   tipLineColor: {r: 0.54509807, g: 0.9333334, b: 0.9333334, a: 1}
   trigger: {fileID: 0}

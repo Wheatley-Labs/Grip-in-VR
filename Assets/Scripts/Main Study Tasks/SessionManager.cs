@@ -15,9 +15,14 @@ public class SessionManager : MonoBehaviour {
     void Start () {
         //DontDestroyOnLoad(this.gameObject);
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnLevelWasLoaded(int level)
+    {
+        error = 0;
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if (Input.GetKeyDown(KeyCode.C))
         {
             LevelFinished();

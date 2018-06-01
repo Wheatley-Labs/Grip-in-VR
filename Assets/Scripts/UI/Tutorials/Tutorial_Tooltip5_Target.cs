@@ -6,7 +6,7 @@ using VRTK.Examples;
 
 public class Tutorial_Tooltip5_Target : MonoBehaviour {
     public GameObject nextTooltip;
-    public VRTK_InteractableObject glass;
+    public GameObject glass;
     public GameObject target;
     public GameObject score;
 
@@ -18,9 +18,9 @@ public class Tutorial_Tooltip5_Target : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (score.GetComponent<ScoreCounter>().score == 1)
+        if (score.GetComponent<ScoreCounter>().score == 1 && !glass.GetComponent<Interactable_GripBinary>().IsGrabbed())
         {
-            //nextTooltip.SetActive(true);
+            nextTooltip.SetActive(true);
             Destroy(gameObject);
         }
 	}

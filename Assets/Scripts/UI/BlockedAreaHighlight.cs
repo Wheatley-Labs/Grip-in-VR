@@ -40,9 +40,15 @@
                 if (!other.GetComponent<Interactable_GripBinary>().IsGrabbed())
                 {
                     if (other.GetComponent<BreakGlass>() != null)
+                    {
                         other.GetComponent<BreakGlass>().Break();
+                        meshRend.enabled = false;
+                    }
                     else
+                    {
                         Destroy(other);
+                        meshRend.enabled = false;
+                    }
                 }
         }
         }
