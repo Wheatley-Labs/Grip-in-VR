@@ -57,8 +57,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1533835657705742}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.167, y: 0.018899918, z: 0.2929}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0.18899989, y: 0.02, z: -0.21399993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4657025071403904}
@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1549613787148668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1554, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4022498073621968}
@@ -160,7 +160,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.04, y: 0.001, z: 0.04}
-  m_Center: {x: 0, y: -0.153, z: 0}
+  m_Center: {x: 0, y: -0.1, z: 0}
 --- !u!114 &114105714671395042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,6 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   window: {fileID: 1699104241738568, guid: e9af86a0ed1c6db458bbe561760bb85b, type: 2}
   stability: 3
+  alreadyBroken: 0
 --- !u!114 &114348344451644316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,6 +238,7 @@ MonoBehaviour:
   triggerToGrab: 1
   gripToTighten: 1
   hideController: 0
+  objectGrabbed: 0
   defaultDangelingDamper: 0.03
 --- !u!114 &114752655506520448
 MonoBehaviour:

@@ -16,7 +16,7 @@
         {
             if (other.CompareTag("Grabbable"))
             {
-                if (other.GetComponent<Interactable_GripBinary>().IsGrabbed())
+                if (other.GetComponent<VRTK_InteractableObject>().IsGrabbed())
                 {
                     meshRend.enabled = true;
                 }
@@ -37,12 +37,16 @@
         {
             if (other.CompareTag("Grabbable"))
             {
-                if (!other.GetComponent<Interactable_GripBinary>().IsGrabbed())
+                if (!other.GetComponent<VRTK_InteractableObject>().IsGrabbed())
                 {
                     if (other.GetComponent<BreakGlass>() != null)
                     {
-                        other.GetComponent<BreakGlass>().Break();
-                        meshRend.enabled = false;
+                        if (!other.GetComponent<BreakGlass>().alreadyBroken)
+                        {
+                            other.GetComponent<BreakGlass>().alreadyBroken = true;
+                            other.GetComponent<BreakGlass>().Break();
+                            meshRend.enabled = false;
+                        }
                     }
                     else
                     {

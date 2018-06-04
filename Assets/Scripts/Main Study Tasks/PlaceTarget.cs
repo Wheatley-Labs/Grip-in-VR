@@ -68,8 +68,14 @@ public class PlaceTarget : MonoBehaviour {
         }
     }
 
-    public void SpawnNext()
+    public void SpawnNext(float waitFor = 0f)
     {
+        StartCoroutine(Spawning(waitFor));
+    }
+
+    IEnumerator Spawning(float waitFor)
+    {
+        yield return new WaitForSeconds(waitFor);
         GameObject nextObject;
         nextObject = Instantiate(objPrefab, spawnPos.transform.position, Quaternion.identity, spawnParent.transform);
         interactionManager.SetModeSingleObject(interactionManager.currentInteractionMode, nextObject);

@@ -7,7 +7,7 @@ public class BreakGlass : MonoBehaviour {
     public GameObject window;
     public float stability;
     private Rigidbody rb;
-    private bool alreadyBroken = false;
+    public bool alreadyBroken = false;
 
 	// Use this for initialization
 	void Start () {
@@ -35,7 +35,7 @@ public class BreakGlass : MonoBehaviour {
         GameObject.FindGameObjectWithTag("ExperimentManager").GetComponent<SessionManager>().AddError();
         if (!SceneManager.GetActiveScene().name.Contains("Tutorial"))
         {
-            GameObject.FindGameObjectWithTag("Target").GetComponent<PlaceTarget>().SpawnNext();
+            GameObject.FindGameObjectWithTag("Target").GetComponent<PlaceTarget>().SpawnNext(1f);
         }
         Destroy(gameObject);
     }
