@@ -42,4 +42,6 @@ public class ScoreCounter : MonoBehaviour
             sessionManager.LevelFinished();
         }
     }
+
+
 }

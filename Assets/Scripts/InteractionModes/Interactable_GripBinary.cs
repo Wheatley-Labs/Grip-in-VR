@@ -18,7 +18,7 @@
 
         private VRTK_ControllerEvents controllerEvents;
         private VRTK_InteractGrab grabbingController;
-        private bool objectGrabbed = false;
+        public bool objectGrabbed = false;
         private bool objectUsed = false;
 
         private Rigidbody thisRB;

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BreakGlass : MonoBehaviour {
     public GameObject window;
     public float stability;
     private Rigidbody rb;
+    private bool alreadyBroken = false;
 
 	// Use this for initialization
 	void Start () {
@@ -14,8 +16,14 @@ public class BreakGlass : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.relativeVelocity.magnitude > stability)
-            Break();
+        if (!alreadyBroken)
+        {
+            if (col.relativeVelocity.magnitude > stability)
+            {
+                alreadyBroken = true;
+                Break();
+            }
+        }
     }
 
     public void Break()
@@ -25,6 +33,10 @@ public class BreakGlass : MonoBehaviour {
         GameObject windowInstance;
         windowInstance = Instantiate(window, tmpPos, Quaternion.identity);
         GameObject.FindGameObjectWithTag("ExperimentManager").GetComponent<SessionManager>().AddError();
+        if (!SceneManager.GetActiveScene().name.Contains("Tutorial"))
+        {
+            GameObject.FindGameObjectWithTag("Target").GetComponent<PlaceTarget>().SpawnNext();
+        }
         Destroy(gameObject);
     }
 }

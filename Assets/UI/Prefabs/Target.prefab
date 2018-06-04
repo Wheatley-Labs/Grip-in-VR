@@ -26,8 +26,8 @@ GameObject:
   - component: {fileID: 114445997675926824}
   - component: {fileID: 114416064146070280}
   m_Layer: 0
-  m_Name: Target_Pokal
-  m_TagString: Untagged
+  m_Name: Target
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,6 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5525a73df11e5df4c92857594d781ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objPrefab: {fileID: 0}
+  spawnPos: {fileID: 0}
+  spawnParent: {fileID: 0}
 --- !u!135 &135907070004389834
 SphereCollider:
   m_ObjectHideFlags: 1

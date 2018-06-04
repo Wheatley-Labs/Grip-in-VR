@@ -53,67 +53,72 @@
 
             foreach (GameObject obj in grabbables)
             {
-                //DELETE ALL EXISTING INTERACTION COMPONENTS
-                if (obj.GetComponent<Interactable_GripBinary>() != null)
-                {
-                    Destroy(obj.GetComponent<Interactable_GripBinary>());
-                }
-                if (obj.GetComponent<ConfigurableJointGrabAttach>())
-                {
-                    Destroy(obj.GetComponent<ConfigurableJointGrabAttach>());
-                }
-                if(obj.GetComponent<VRTK_InteractableObject>() != null)
-                {
-                    Destroy(obj.GetComponent<VRTK_InteractableObject>());
-                }
-                if (obj.GetComponent<VRTK_FixedJointGrabAttach>())
-                {
-                    Destroy(obj.GetComponent<VRTK_FixedJointGrabAttach>());
-                }
+                SetModeSingleObject(newMode, obj);
+            }
+        }
 
-                // ENABLE MODE #1 - BASELINE
-                if (newMode == 1)
-                {
-                    VRTK_InteractableObject cmp11 = obj.AddComponent<VRTK_InteractableObject>() as VRTK_InteractableObject;
-                    VRTK_FixedJointGrabAttach cmp12 = obj.AddComponent<VRTK_FixedJointGrabAttach>() as VRTK_FixedJointGrabAttach;
+        public void SetModeSingleObject(int newMode, GameObject obj)
+        {
+            //DELETE ALL EXISTING INTERACTION COMPONENTS
+            if (obj.GetComponent<Interactable_GripBinary>() != null)
+            {
+                Destroy(obj.GetComponent<Interactable_GripBinary>());
+            }
+            if (obj.GetComponent<ConfigurableJointGrabAttach>())
+            {
+                Destroy(obj.GetComponent<ConfigurableJointGrabAttach>());
+            }
+            if (obj.GetComponent<VRTK_InteractableObject>() != null)
+            {
+                Destroy(obj.GetComponent<VRTK_InteractableObject>());
+            }
+            if (obj.GetComponent<VRTK_FixedJointGrabAttach>())
+            {
+                Destroy(obj.GetComponent<VRTK_FixedJointGrabAttach>());
+            }
 
-                    cmp11.isGrabbable = true;
-                    cmp11.holdButtonToGrab = true;
-                    cmp11.grabAttachMechanicScript = cmp12;
-                    cmp11.isUsable = false;
+            // ENABLE MODE #1 - BASELINE
+            if (newMode == 1)
+            {
+                VRTK_InteractableObject cmp11 = obj.AddComponent<VRTK_InteractableObject>() as VRTK_InteractableObject;
+                VRTK_FixedJointGrabAttach cmp12 = obj.AddComponent<VRTK_FixedJointGrabAttach>() as VRTK_FixedJointGrabAttach;
 
-                    cmp12.precisionGrab = true;
-                    cmp12.precisionButCentered = true;
-                }
+                cmp11.isGrabbable = true;
+                cmp11.holdButtonToGrab = true;
+                cmp11.grabAttachMechanicScript = cmp12;
+                cmp11.isUsable = false;
 
-                //ENABLE MODE #2 - TIGHTEN WITH GRIP
-                else if (newMode == 2)
-                {
-                    Interactable_GripBinary cmp21 = obj.AddComponent<Interactable_GripBinary>() as Interactable_GripBinary;
-                    ConfigurableJointGrabAttach cmp22 = obj.AddComponent<ConfigurableJointGrabAttach>() as ConfigurableJointGrabAttach;
+                cmp12.precisionGrab = true;
+                cmp12.precisionButCentered = true;
+            }
 
-                    ConfigureVariableModes(cmp21, cmp22);
-                    cmp21.gripToTighten = true;
-                    cmp21.useOverrideButton = VRTK_ControllerEvents.ButtonAlias.GripPress;
-                    ConfigureAnchor(cmp22);
-                }
+            //ENABLE MODE #2 - TIGHTEN WITH GRIP
+            else if (newMode == 2)
+            {
+                Interactable_GripBinary cmp21 = obj.AddComponent<Interactable_GripBinary>() as Interactable_GripBinary;
+                ConfigurableJointGrabAttach cmp22 = obj.AddComponent<ConfigurableJointGrabAttach>() as ConfigurableJointGrabAttach;
 
-                //ENABLE MODE #3 - ONLY TRIGGER
-                else if (newMode == 3)
-                {
-                    Interactable_GripBinary cmp31 = obj.AddComponent<Interactable_GripBinary>() as Interactable_GripBinary;
-                    ConfigurableJointGrabAttach cmp32 = obj.AddComponent<ConfigurableJointGrabAttach>() as ConfigurableJointGrabAttach;
+                ConfigureVariableModes(cmp21, cmp22);
+                cmp21.gripToTighten = true;
+                cmp21.useOverrideButton = VRTK_ControllerEvents.ButtonAlias.GripPress;
+                ConfigureAnchor(cmp22);
+            }
 
-                    ConfigureVariableModes(cmp31, cmp32);
-                    cmp31.gripToTighten = false;
-                    ConfigureAnchor(cmp32);
-                }
+            //ENABLE MODE #3 - ONLY TRIGGER
+            else if (newMode == 3)
+            {
+                Interactable_GripBinary cmp31 = obj.AddComponent<Interactable_GripBinary>() as Interactable_GripBinary;
+                ConfigurableJointGrabAttach cmp32 = obj.AddComponent<ConfigurableJointGrabAttach>() as ConfigurableJointGrabAttach;
 
-                else
-                {
-                    Debug.Log("No Interaction Mode specified");
-                    return;
-                }
+                ConfigureVariableModes(cmp31, cmp32);
+                cmp31.gripToTighten = false;
+                ConfigureAnchor(cmp32);
+            }
+
+            else
+            {
+                Debug.Log("No Interaction Mode specified");
+                return;
             }
         }
 

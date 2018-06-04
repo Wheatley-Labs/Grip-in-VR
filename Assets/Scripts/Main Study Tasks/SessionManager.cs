@@ -40,7 +40,7 @@ public class SessionManager : MonoBehaviour {
         failedTooltip.SetActive(true);
     }
 
-    public void AddError()
+    public void AddError()  
     {
         error += 1;
 
