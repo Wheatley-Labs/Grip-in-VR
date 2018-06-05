@@ -937,8 +937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ed683b89cd94a44bb399806ce5cce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayText: "\xD6ffne die untere Schublade. \\nStelle dann 8 der Gl\xE4ser \\nin
-    das Schr\xE4nkchen."
+  displayText: "\xD6ffne die untere Schublade. \\nStelle dann 12 Gl\xE4ser \\nin das
+    Schr\xE4nkchen."
   fontSize: 48
   containerSize: {x: 700, y: 220}
   drawLineFrom: {fileID: 796083057}

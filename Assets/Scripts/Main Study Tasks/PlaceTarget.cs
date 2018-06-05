@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 using VRTK.Examples;
+using UnityEngine.SceneManagement;
 
 public class PlaceTarget : MonoBehaviour {
     private Animator targetAnimator;
@@ -37,15 +38,20 @@ public class PlaceTarget : MonoBehaviour {
             {
                 if (!other.GetComponentInParent<VRTK_InteractableObject>().IsGrabbed())
                 {
-                    scoreCounter.UpdateScore(true);
-                    alreadySpawned = true;
-                    other.GetComponentInParent<MeshRenderer>().material.color = new Color32(88, 209, 90, 153);
-                    other.GetComponentInParent<VRTK_InteractableObject>().isGrabbable = false;
-
-                    if (scoreCounter.score < scoreCounter.maxScore)
+                    Transform objTransform = other.GetComponentInParent<Transform>();
+                    if (other.GetComponentInParent<Rigidbody>().angularVelocity.magnitude < 0.1f 
+                        && objTransform.localEulerAngles.x < 3f && objTransform.localEulerAngles.z < 3f)
                     {
-                        SpawnNext();
-                        StartCoroutine(DestroyLastGlass(other.transform.parent.gameObject));
+                        scoreCounter.UpdateScore(true);
+                        alreadySpawned = true;
+                        other.GetComponentInParent<MeshRenderer>().material.color = new Color32(88, 209, 90, 153);
+                        other.GetComponentInParent<VRTK_InteractableObject>().isGrabbable = false;
+
+                        if (scoreCounter.score < scoreCounter.maxScore)
+                        {
+                            SpawnNext();
+                            StartCoroutine(DestroyLastGlass(other.transform.parent.gameObject));
+                        }
                     }
                 }
             }
@@ -79,5 +85,8 @@ public class PlaceTarget : MonoBehaviour {
         GameObject nextObject;
         nextObject = Instantiate(objPrefab, spawnPos.transform.position, Quaternion.identity, spawnParent.transform);
         interactionManager.SetModeSingleObject(interactionManager.currentInteractionMode, nextObject);
+        if (SceneManager.GetActiveScene().name.Contains("Tutorial")){
+            Destroy(nextObject.GetComponent<BreakGlass>());
+        }
     }
 }

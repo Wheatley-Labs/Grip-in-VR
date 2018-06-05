@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VRTK.Examples;
+using UnityEngine.SceneManagement;
 
 public class SessionManager : MonoBehaviour {
 
@@ -27,7 +28,12 @@ public class SessionManager : MonoBehaviour {
         {
             LevelFinished();
         }
-	}
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(ReloadAsyncThisScene());
+        }
+    }
 
     public void LevelFinished()
     {
@@ -35,16 +41,23 @@ public class SessionManager : MonoBehaviour {
         continueButton.GetComponent<MeshRenderer>().material = activeMaterial;
     }
 
-    public void LevelFailed()
-    {
-        failedTooltip.SetActive(true);
-    }
+    //public void LevelFailed()
+    //{
+    //    failedTooltip.SetActive(true);
+    //}
 
     public void AddError()  
     {
         error += 1;
+    }
 
-        if (error == 3)
-            LevelFailed();
+    IEnumerator ReloadAsyncThisScene()
+    {
+        AsyncOperation loadState = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+
+        while (!loadState.isDone)
+        {
+            yield return null;
+        }
     }
 }

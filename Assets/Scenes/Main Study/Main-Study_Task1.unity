@@ -669,7 +669,7 @@ Prefab:
     - target: {fileID: 114071421396651934, guid: 5de3b48ad77326b4e9426b5f4d8f73e2,
         type: 2}
       propertyPath: displayText
-      value: "Stelle die Tassen auf \\ndie Arbeitsplatte gegen\xFCber"
+      value: "Stelle 12 Gl\xE4ser auf \\ndie Arbeitsplatte gegen\xFCber."
       objectReference: {fileID: 0}
     - target: {fileID: 114071421396651934, guid: 5de3b48ad77326b4e9426b5f4d8f73e2,
         type: 2}
@@ -1141,19 +1141,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4370479797006746, guid: 34cf63264dbdee045b2c1c426158e256, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4106125669049470, guid: 34cf63264dbdee045b2c1c426158e256, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4265452164828202, guid: 34cf63264dbdee045b2c1c426158e256, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4299171991970394, guid: 34cf63264dbdee045b2c1c426158e256, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4911820275834358, guid: 34cf63264dbdee045b2c1c426158e256, type: 2}
       propertyPath: m_RootOrder
@@ -1161,7 +1161,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4318335740637610, guid: 34cf63264dbdee045b2c1c426158e256, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4464154525163856, guid: 34cf63264dbdee045b2c1c426158e256, type: 2}
       propertyPath: m_RootOrder
@@ -1259,11 +1259,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 224047803364986606, guid: f346b5dce4dc0d4409efc3d95aed61a6,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114373295441107616, guid: f346b5dce4dc0d4409efc3d95aed61a6,
         type: 2}
       propertyPath: continueButton
@@ -1274,6 +1269,11 @@ Prefab:
       propertyPath: failedTooltip
       value: 
       objectReference: {fileID: 341488049}
+    - target: {fileID: 224047803364986606, guid: f346b5dce4dc0d4409efc3d95aed61a6,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f346b5dce4dc0d4409efc3d95aed61a6, type: 2}
   m_IsPrefabParent: 0
@@ -1498,53 +1498,6 @@ Prefab:
     - target: {fileID: 4217519374461972, guid: 55ae1540028c2ef49a173affa93224a3, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166934717874806, guid: 55ae1540028c2ef49a173affa93224a3, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23345822034903106, guid: 55ae1540028c2ef49a173affa93224a3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23401555198243402, guid: 55ae1540028c2ef49a173affa93224a3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23223933276842320, guid: 55ae1540028c2ef49a173affa93224a3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23171923671745688, guid: 55ae1540028c2ef49a173affa93224a3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23436521168041890, guid: 55ae1540028c2ef49a173affa93224a3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23868982616114630, guid: 55ae1540028c2ef49a173affa93224a3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23061489090435450, guid: 55ae1540028c2ef49a173affa93224a3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1713028703556794, guid: 55ae1540028c2ef49a173affa93224a3, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1574594944044880, guid: 55ae1540028c2ef49a173affa93224a3, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55ae1540028c2ef49a173affa93224a3, type: 2}

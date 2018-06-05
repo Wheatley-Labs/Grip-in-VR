@@ -42,14 +42,16 @@ public class Tutorial_Tooltip4C_Tighten : MonoBehaviour {
 
     IEnumerator PotentiallyStopHighlighting()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         if (glass.GetComponent<VRTK_InteractableObject>().IsGrabbed() && (IsGripLoose(contrL) || IsGripLoose(contrR)))
         {
-            contrL.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.Trigger);
-            contrR.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.Trigger);
-
             contrL.GetComponentInChildren<VRTK_ControllerTooltips>().ToggleTips(false);
             contrR.GetComponentInChildren<VRTK_ControllerTooltips>().ToggleTips(false);
+
+            yield return new WaitForSeconds(5f);
+
+            contrL.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.Trigger);
+            contrR.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.Trigger);
 
             nextTooltip.SetActive(true);
             Destroy(gameObject);

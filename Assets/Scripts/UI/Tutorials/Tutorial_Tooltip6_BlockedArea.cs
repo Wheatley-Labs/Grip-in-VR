@@ -6,35 +6,40 @@ using VRTK.Examples;
 
 public class Tutorial_Tooltip6_BlockedArea : MonoBehaviour {
     public GameObject nextTooltip;
-    public GameObject glass;
+    public GameObject oldGlass;
+    public GameObject newGlass;
     public GameObject target;
     public GameObject score;
     public GameObject blockedArea;
-    public GameObject windowPokalPrefab;
+    private bool glassesChanged = false;
+
+    private InteractionManager interactionManager;
 
     // Use this for initialization
     void Start () {
         blockedArea.SetActive(true);
-        BreakGlass brkGls = glass.AddComponent<BreakGlass>() as BreakGlass;
-        brkGls.window = windowPokalPrefab;
-        brkGls.stability = 3;
+        interactionManager = GameObject.FindGameObjectWithTag("ExperimentManager").GetComponent<InteractionManager>();
+
+        StartCoroutine(changeGlasses());
     }
 
     // Update is called once per frame
     void Update () {
-        if (glass != null)
-        {
-            if (glass.GetComponent<Interactable_GripBinary>().IsGrabbed())
-            {
-                target.SetActive(false);
-                score.SetActive(false);
-            }
-        }
-
         if (GameObject.FindGameObjectWithTag("ExperimentManager").GetComponent<SessionManager>().error == 1)
         {
             nextTooltip.SetActive(true);
             Destroy(gameObject);
         }
 	}
+
+    IEnumerator changeGlasses()
+    {
+        yield return new WaitForSeconds(2f);
+        oldGlass.SetActive(false);
+        target.SetActive(false);
+        score.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        newGlass.SetActive(true);
+        interactionManager.SetModeSingleObject(interactionManager.currentInteractionMode, newGlass);
+    }
 }

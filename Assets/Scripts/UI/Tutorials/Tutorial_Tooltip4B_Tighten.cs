@@ -36,13 +36,13 @@ public class Tutorial_Tooltip4B_Tighten : MonoBehaviour {
         ContrR.GetComponent<VRTK_ControllerHighlighter>().HighlightElement(SDK_BaseController.ControllerElements.GripLeft, Color.cyan, 1f);
         ContrR.GetComponent<VRTK_ControllerHighlighter>().HighlightElement(SDK_BaseController.ControllerElements.GripRight, Color.cyan, 1f);
 
-        ContrL.GetComponentInChildren<VRTK_ControllerTooltips>().UpdateText(VRTK_ControllerTooltips.TooltipButtons.GripTooltip, "Drücke die Grip-Buttons\nfür einen festen Griff");
-        ContrR.GetComponentInChildren<VRTK_ControllerTooltips>().UpdateText(VRTK_ControllerTooltips.TooltipButtons.GripTooltip, "Drücke die Grip-Buttons\nfür einen festen Griff");
+        ContrL.GetComponentInChildren<VRTK_ControllerTooltips>().UpdateText(VRTK_ControllerTooltips.TooltipButtons.GripTooltip, "Drücke zusätzlich die Grip-Buttons\nfür einen festen Griff");
+        ContrR.GetComponentInChildren<VRTK_ControllerTooltips>().UpdateText(VRTK_ControllerTooltips.TooltipButtons.GripTooltip, "Drücke zusätzlich die Grip-Buttons\nfür einen festen Griff");
     }
 
     IEnumerator StopHighlighting()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(7f);
         ContrL.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.GripLeft);
         ContrL.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.GripRight);
         ContrR.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.GripLeft);

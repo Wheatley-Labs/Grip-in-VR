@@ -838,7 +838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ed683b89cd94a44bb399806ce5cce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayText: "\xD6ffne das Schr\xE4nkchen. \\nStelle dann 5 der Karaffen \\nin den
+  displayText: "\xD6ffne das Schr\xE4nkchen. \\nStelle dann 12 Karaffen \\nin den
     Ofen."
   fontSize: 48
   containerSize: {x: 700, y: 220}

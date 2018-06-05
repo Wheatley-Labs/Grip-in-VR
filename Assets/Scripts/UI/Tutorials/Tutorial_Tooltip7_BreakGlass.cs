@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class Tutorial_Tooltip7_BreakGlass : MonoBehaviour {
     public GameObject nextTooltip;
     public GameObject moreGlasses;
-    private int destroyedGlasses;
     private InteractionManager interactionManager;
     private SessionManager sessionManager;
     public Text textField;
@@ -22,24 +21,18 @@ public class Tutorial_Tooltip7_BreakGlass : MonoBehaviour {
 
         sessionManager = GameObject.FindGameObjectWithTag("ExperimentManager").GetComponent<SessionManager>();
         sessionManager.error = 0;
-        destroyedGlasses = 0;
     }
 
     // Update is called once per frame
     void Update () {
-        if (sessionManager.error > 0)
-        {
-            sessionManager.error = 0;
-            destroyedGlasses += 1;
-        }
-        
-        if (destroyedGlasses == 1)
-        {
+        if (sessionManager.error == 2)
+                {
             textField.text = "Alles!";
         }
 
-        if (destroyedGlasses == 5)
+        if (sessionManager.error == 6)
         {
+            sessionManager.LevelFinished();
             nextTooltip.SetActive(true);
             Destroy(gameObject);
         }

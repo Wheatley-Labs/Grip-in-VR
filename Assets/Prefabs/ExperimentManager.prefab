@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   continueButton: {fileID: 0}
-  activeMaterial: {fileID: 2100004, guid: 1755bbc4e18b9fa4a8f1ccc752eeaa51, type: 3}
+  activeMaterial: {fileID: 2100000, guid: 9d80d751138368e40830d190880ac510, type: 2}
   error: 0
   failedTooltip: {fileID: 0}
 --- !u!114 &114442864263275384

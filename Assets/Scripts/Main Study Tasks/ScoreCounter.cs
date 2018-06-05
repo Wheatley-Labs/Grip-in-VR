@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using VRTK.Examples;
+using UnityEngine.SceneManagement;
 
 public class ScoreCounter : MonoBehaviour
 {
@@ -39,7 +40,10 @@ public class ScoreCounter : MonoBehaviour
         {
             text.color = successGreen;
             text.text = score + " von " + maxScore;
-            sessionManager.LevelFinished();
+            if (!SceneManager.GetActiveScene().name.Contains("Tutorial"))
+            {
+                sessionManager.LevelFinished();
+            }
         }
     }
 
