@@ -49,7 +49,7 @@ public class PlaceTarget : MonoBehaviour {
 
                         if (scoreCounter.score < scoreCounter.maxScore)
                         {
-                            SpawnNext();
+                            StartCoroutine(SpawnNext());
                             StartCoroutine(DestroyLastGlass(other.transform.parent.gameObject));
                         }
                     }
@@ -60,7 +60,7 @@ public class PlaceTarget : MonoBehaviour {
 
     IEnumerator DestroyLastGlass(GameObject other)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         alreadySpawned = false;
         targetAnimator.SetBool("success", false);
         Destroy(other);
@@ -74,12 +74,7 @@ public class PlaceTarget : MonoBehaviour {
         }
     }
 
-    public void SpawnNext(float waitFor = 0f)
-    {
-        StartCoroutine(Spawning(waitFor));
-    }
-
-    IEnumerator Spawning(float waitFor)
+    public IEnumerator SpawnNext(float waitFor = 0f)
     {
         yield return new WaitForSeconds(waitFor);
         GameObject nextObject;
