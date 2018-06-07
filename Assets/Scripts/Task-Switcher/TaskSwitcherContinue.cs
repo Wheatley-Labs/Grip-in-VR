@@ -8,7 +8,6 @@
 
     public class TaskSwitcherContinue : VRTK_InteractableObject
     {
-
         public override void StartUsing(VRTK_InteractUse usingObject)
         {
             StartCoroutine(LoadAsyncScene());
@@ -16,12 +15,25 @@
 
         IEnumerator LoadAsyncScene()
         {
-            int currentScene = SceneManager.GetActiveScene().buildIndex;
-            AsyncOperation loadState = SceneManager.LoadSceneAsync(currentScene + 1);
-
-            while (!loadState.isDone)
+            if (SceneManager.GetActiveScene().name.Contains("Tutorial"))
             {
-                yield return null;
+                AsyncOperation loadState = SceneManager.LoadSceneAsync("Main-Study_Task1");
+
+                while (!loadState.isDone)
+                {
+                    yield return null;
+                }
+            }
+
+            else
+            {
+                int currentScene = SceneManager.GetActiveScene().buildIndex;
+                AsyncOperation loadState = SceneManager.LoadSceneAsync(currentScene + 1);
+
+                while (!loadState.isDone)
+                {
+                    yield return null;
+                }
             }
         }
     }
