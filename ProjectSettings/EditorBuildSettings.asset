@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Study/Main-Study_Tutorial_initial.unity
     guid: 273a3b8846c150e428861cc93ea4b8f2
   - enabled: 1
-    path: Assets/Scenes/Main Study/Main-Study_Tutorial_subsequential.unity
+    path: Assets/Scenes/Main Study/Main-Study_Tutorial_subsequent.unity
     guid: df02b1f09b232884ebed6aad3679a638
   - enabled: 1
     path: Assets/Scenes/Main Study/Main-Study_Task1.unity

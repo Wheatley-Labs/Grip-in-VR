@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 365535944}
   m_Layer: 5
   m_Name: Score
-  m_TagString: Untagged
+  m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1063,6 +1063,29 @@ Prefab:
     - target: {fileID: 4429835744616360, guid: 310a959415a194344bc7396d5b69ce33, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0.095
+      objectReference: {fileID: 0}
+    - target: {fileID: 114687474391867342, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: startMenuText
+      value: DAS IST DER\nFALSCHE CONTROLLER
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049956091288342, guid: 310a959415a194344bc7396d5b69ce33, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049956091288342, guid: 310a959415a194344bc7396d5b69ce33, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 114242043114450226, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: containerSize.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114242043114450226, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: containerSize.y
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 310a959415a194344bc7396d5b69ce33, type: 2}

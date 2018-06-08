@@ -14,6 +14,8 @@ TagManager:
   - ExperimentManager
   - Carafe
   - Target
+  - Logger
+  - Score
   layers:
   - Default
   - TransparentFX

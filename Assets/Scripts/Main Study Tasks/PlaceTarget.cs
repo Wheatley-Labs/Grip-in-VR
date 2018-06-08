@@ -60,7 +60,8 @@ public class PlaceTarget : MonoBehaviour {
 
     IEnumerator DestroyLastGlass(GameObject other)
     {
-        yield return new WaitForSeconds(1f);
+        other.isStatic = true;
+        yield return new WaitForSeconds(0.8f);
         alreadySpawned = false;
         targetAnimator.SetBool("success", false);
         Destroy(other);
@@ -74,7 +75,13 @@ public class PlaceTarget : MonoBehaviour {
         }
     }
 
-    public IEnumerator SpawnNext(float waitFor = 0f)
+    //workaround for BreakGlass-script to trigger the spawning externally
+    public void ExecuteCoroutineforSpawning(float waitFor = 0f)
+    {
+        StartCoroutine(SpawnNext(waitFor));
+    }
+
+    private IEnumerator SpawnNext(float waitFor = 0f)
     {
         yield return new WaitForSeconds(waitFor);
         GameObject nextObject;

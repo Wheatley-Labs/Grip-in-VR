@@ -35,7 +35,7 @@ public class BreakGlass : MonoBehaviour {
         GameObject.FindGameObjectWithTag("ExperimentManager").GetComponent<SessionManager>().AddError();
         if (!SceneManager.GetActiveScene().name.Contains("Tutorial"))
         {
-            StartCoroutine(GameObject.FindGameObjectWithTag("Target").GetComponent<PlaceTarget>().SpawnNext(1f));
+            GameObject.FindGameObjectWithTag("Target").GetComponent<PlaceTarget>().ExecuteCoroutineforSpawning(1f);
         }
         Destroy(gameObject);
     }
