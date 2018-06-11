@@ -10,6 +10,7 @@
         public GameObject otherDoor;
         private Animator otherAnimator;
         public GameObject TooltipCupboard;
+        public GameObject firstObject;
 
         // Use this for initialization
         void Start()
@@ -21,26 +22,17 @@
         public void StartHighlighting()
         {
             TooltipCupboard.SetActive(true);
-
-            animator.SetBool("highlight", true);
-            otherAnimator.SetBool("highlight", true);
         }
 
         public IEnumerator StopHighlighting()
         {
-            animator.SetBool("highlight", false);
-            otherAnimator.SetBool("highlight", false);
             TooltipCupboard.SetActive(false);
-
-            yield return new WaitForSeconds(2f);
-            animator.enabled = false;
-            otherAnimator.enabled = false;
-            
             Destroy(GetComponent<HighlightCupboardTask3>());
+            yield return null;
         }
         private void Update()
         {
-            if (transform.localEulerAngles.y > 60 && otherDoor.transform.localEulerAngles.y < 290 && otherDoor.transform.localEulerAngles.y > 100)
+            if (firstObject.GetComponent<VRTK_InteractableObject>().IsGrabbed())
             {
                 StartCoroutine("StopHighlighting");
             }

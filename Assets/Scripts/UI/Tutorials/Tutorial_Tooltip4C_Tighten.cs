@@ -45,6 +45,8 @@ public class Tutorial_Tooltip4C_Tighten : MonoBehaviour {
         yield return new WaitForSeconds(2f);
         if (glass.GetComponent<VRTK_InteractableObject>().IsGrabbed() && (IsGripLoose(contrL) || IsGripLoose(contrR)))
         {
+            contrL.GetComponentInChildren<VRTK_ControllerTooltips>().UpdateText(VRTK_ControllerTooltips.TooltipButtons.TriggerTooltip, "");
+            contrR.GetComponentInChildren<VRTK_ControllerTooltips>().UpdateText(VRTK_ControllerTooltips.TooltipButtons.TriggerTooltip, "");
             contrL.GetComponentInChildren<VRTK_ControllerTooltips>().ToggleTips(false);
             contrR.GetComponentInChildren<VRTK_ControllerTooltips>().ToggleTips(false);
 

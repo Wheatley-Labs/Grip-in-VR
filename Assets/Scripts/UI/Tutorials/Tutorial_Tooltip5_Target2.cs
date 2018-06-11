@@ -14,7 +14,7 @@ public class Tutorial_Tooltip5_Target2 : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (score.GetComponent<ScoreCounter>().score == 6)
+        if (score.GetComponent<ScoreCounter>().score == score.GetComponent<ScoreCounter>().maxScore)
         {
             nextTooltip.SetActive(true);
             Destroy(gameObject);

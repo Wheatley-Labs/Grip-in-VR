@@ -836,7 +836,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1511968342129914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 0, z: 0}
+  m_LocalPosition: {x: 0.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4855311136128956}
@@ -849,7 +849,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1754776396584006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.075, y: 0, z: 0}
+  m_LocalPosition: {x: 0.095, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4661156745568714}
@@ -875,7 +875,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1251929103005524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0, z: 0}
+  m_LocalPosition: {x: -0.055, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4282356416067888}
@@ -1021,7 +1021,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 15
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -1032,7 +1032,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "Touchpad dr\xFCcken\nzum Fortfahren"
 --- !u!114 &114026051008274786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayText: TooltipText
   fontSize: 12
-  containerSize: {x: 150, y: 45}
+  containerSize: {x: 190, y: 45}
   drawLineFrom: {fileID: 4429835744616360}
   drawLineTo: {fileID: 0}
   lineWidth: 0.001
@@ -1348,7 +1348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayText: TooltipText
   fontSize: 12
-  containerSize: {x: 140, y: 45}
+  containerSize: {x: 160, y: 45}
   drawLineFrom: {fileID: 4423595242352608}
   drawLineTo: {fileID: 0}
   lineWidth: 0.001
@@ -1595,8 +1595,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a9c9ae8b1fb1542b78598ac955afe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerText: "Dr\xFCcke den Trigger,\\num Objekte zu greifen"
-  gripText: "Dr\xFCcke den Grip-Button\\nf\xFCr einen festen Griff"
+  triggerText: 
+  gripText: 
   touchpadText: 
   buttonOneText: 
   buttonTwoText: 
@@ -1687,8 +1687,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayText: TooltipText
-  fontSize: 14
-  containerSize: {x: 100, y: 30}
+  fontSize: 12
+  containerSize: {x: 110, y: 35}
   drawLineFrom: {fileID: 4507063780909568}
   drawLineTo: {fileID: 0}
   lineWidth: 0.001

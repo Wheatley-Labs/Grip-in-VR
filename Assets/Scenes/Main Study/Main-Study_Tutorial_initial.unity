@@ -1749,14 +1749,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114373295441107616, guid: f346b5dce4dc0d4409efc3d95aed61a6,
         type: 2}
-      propertyPath: continueButton
+      propertyPath: CtrlR
       value: 
-      objectReference: {fileID: 1586816877}
-    - target: {fileID: 114373295441107616, guid: f346b5dce4dc0d4409efc3d95aed61a6,
-        type: 2}
-      propertyPath: failedTooltip
-      value: 
-      objectReference: {fileID: 1200033505}
+      objectReference: {fileID: 1548086170}
     - target: {fileID: 224047803364986606, guid: f346b5dce4dc0d4409efc3d95aed61a6,
         type: 2}
       propertyPath: m_AnchorMax.y
@@ -2064,11 +2059,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 255333d57084e4e46b3d948279746a47, type: 2}
   m_PrefabInternal: {fileID: 535367117}
---- !u!1 &1200033505 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1160946612726416, guid: 4d293c8e162f3874b982baadd71153d2,
-    type: 2}
-  m_PrefabInternal: {fileID: 341488048}
 --- !u!4 &1232424367 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4357862011780104, guid: 34cf63264dbdee045b2c1c426158e256,
@@ -2638,9 +2628,15 @@ Prefab:
       propertyPath: m_Name
       value: ControllerTooltipsR
       objectReference: {fileID: 0}
-    - target: {fileID: 1448889691318086, guid: 310a959415a194344bc7396d5b69ce33, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 224991730164637362, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224991730164637362, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224856990278088926, guid: 310a959415a194344bc7396d5b69ce33,
         type: 2}
@@ -2671,44 +2667,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224991730164637362, guid: 310a959415a194344bc7396d5b69ce33,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224991730164637362, guid: 310a959415a194344bc7396d5b69ce33,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114687474391867342, guid: 310a959415a194344bc7396d5b69ce33,
-        type: 2}
-      propertyPath: triggerText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114687474391867342, guid: 310a959415a194344bc7396d5b69ce33,
-        type: 2}
-      propertyPath: gripText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114440264331152324, guid: 310a959415a194344bc7396d5b69ce33,
-        type: 2}
-      propertyPath: containerSize.x
-      value: 160
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423595242352608, guid: 310a959415a194344bc7396d5b69ce33, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 114026051008274786, guid: 310a959415a194344bc7396d5b69ce33,
-        type: 2}
-      propertyPath: containerSize.x
-      value: 190
-      objectReference: {fileID: 0}
-    - target: {fileID: 4429835744616360, guid: 310a959415a194344bc7396d5b69ce33, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.095
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 310a959415a194344bc7396d5b69ce33, type: 2}
@@ -2947,14 +2905,13 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832237175849434, guid: 55ae1540028c2ef49a173affa93224a3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55ae1540028c2ef49a173affa93224a3, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1586816877 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1771504906394298, guid: 55ae1540028c2ef49a173affa93224a3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1586816876}
 --- !u!4 &1586816878 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4114529079940880, guid: 55ae1540028c2ef49a173affa93224a3,
@@ -4606,8 +4563,7 @@ Prefab:
         type: 2}
       propertyPath: displayText
       value: "Prima, dann legen wir los!\\nSobald du eine Aufgabe erf\xFCllt\\nhast,
-        dr\xFCcke mit dem Trigger\\nden Button \"Weiter\", um mit\\ndem n\xE4chsten
-        Level fortzufahren."
+        dr\xFCcke auf das Touchpad,\\num mit dem n\xE4chsten\\nLevel fortzufahren."
       objectReference: {fileID: 0}
     - target: {fileID: 114071421396651934, guid: 5de3b48ad77326b4e9426b5f4d8f73e2,
         type: 2}
@@ -4673,6 +4629,11 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 53.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114071421396651934, guid: 5de3b48ad77326b4e9426b5f4d8f73e2,
+        type: 2}
+      propertyPath: lineWidth
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5de3b48ad77326b4e9426b5f4d8f73e2, type: 2}
   m_IsPrefabParent: 0
@@ -4686,6 +4647,17 @@ GameObject:
   m_PrefabParentObject: {fileID: 1194262978717098, guid: 5de3b48ad77326b4e9426b5f4d8f73e2,
     type: 2}
   m_PrefabInternal: {fileID: 2050460987}
+--- !u!114 &2050460990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2050460989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0708c0d5bcf8294e8fed6ebe9dc3634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2107112091
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VRTK.Examples;
+using VRTK;
 using UnityEngine.SceneManagement;
+using System;
 
 public class SessionManager : MonoBehaviour {
 
-    public GameObject continueButton;
-    public Material activeMaterial;
-
     public int error = 0;
-    public GameObject failedTooltip;
+    public bool levelFinished = false;
+
+    public GameObject CtrlR;
 
     // Use this for initialization
     void Start () {
@@ -33,12 +34,34 @@ public class SessionManager : MonoBehaviour {
         {
             StartCoroutine(ReloadAsyncThisScene());
         }
+
+        if (CtrlR == null)
+        {
+            try
+            {
+                CtrlR = GameObject.FindGameObjectWithTag("Right Controller");
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e, this);
+            }
+        }
+
+        if (levelFinished)
+        {
+            if (CtrlR.GetComponent<VRTK_ControllerEvents>().touchpadPressed)
+            {
+                StartCoroutine(LoadAsyncScene());
+            }
+        }
     }
 
     public void LevelFinished()
     {
-        continueButton.GetComponent<BoxCollider>().enabled = true;
-        continueButton.GetComponent<MeshRenderer>().material = activeMaterial;
+        levelFinished = true;
+
+        CtrlR.GetComponentInChildren<VRTK_ControllerTooltips>().UpdateText(VRTK_ControllerTooltips.TooltipButtons.TouchpadTooltip, "Touchpad drücken\nzum Fortfahren");
+        CtrlR.GetComponent<VRTK_ControllerHighlighter>().highlightTouchpad = Color.cyan;
     }
 
     //public void LevelFailed()
@@ -58,6 +81,30 @@ public class SessionManager : MonoBehaviour {
         while (!loadState.isDone)
         {
             yield return null;
+        }
+    }
+
+    IEnumerator LoadAsyncScene()
+    {
+        if (SceneManager.GetActiveScene().name.Contains("Tutorial"))
+        {
+            AsyncOperation loadState = SceneManager.LoadSceneAsync("Main-Study_Task1");
+
+            while (!loadState.isDone)
+            {
+                yield return null;
+            }
+        }
+
+        else
+        {
+            int currentScene = SceneManager.GetActiveScene().buildIndex;
+            AsyncOperation loadState = SceneManager.LoadSceneAsync(currentScene + 1);
+
+            while (!loadState.isDone)
+            {
+                yield return null;
+            }
         }
     }
 }

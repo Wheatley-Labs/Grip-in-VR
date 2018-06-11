@@ -32,15 +32,16 @@ public class OvenStaysOpenOrClosed : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.3f);
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
         Destroy(GetComponent<HingeJoint>());
         foreach(Collider col in GetComponents<Collider>())
         {
             Destroy(col);
         }
 
-        force.force = Vector3.left * 0.4f;
+        force.force = Vector3.left * 0.5f;
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
 }

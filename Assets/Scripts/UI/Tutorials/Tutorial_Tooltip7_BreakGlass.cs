@@ -32,7 +32,6 @@ public class Tutorial_Tooltip7_BreakGlass : MonoBehaviour {
 
         if (sessionManager.error == 6)
         {
-            sessionManager.LevelFinished();
             nextTooltip.SetActive(true);
             Destroy(gameObject);
         }

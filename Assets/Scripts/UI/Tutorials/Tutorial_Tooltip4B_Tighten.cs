@@ -48,6 +48,8 @@ public class Tutorial_Tooltip4B_Tighten : MonoBehaviour {
             yield break;
         }
 
+        ContrL.GetComponentInChildren<VRTK_ControllerTooltips>().UpdateText(VRTK_ControllerTooltips.TooltipButtons.GripTooltip, "");
+        ContrR.GetComponentInChildren<VRTK_ControllerTooltips>().UpdateText(VRTK_ControllerTooltips.TooltipButtons.GripTooltip, "");
         ContrL.GetComponentInChildren<VRTK_ControllerTooltips>().ToggleTips(false);
         ContrR.GetComponentInChildren<VRTK_ControllerTooltips>().ToggleTips(false);
 
