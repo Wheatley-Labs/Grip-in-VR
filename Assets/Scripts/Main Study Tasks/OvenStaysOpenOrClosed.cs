@@ -22,9 +22,25 @@ public class OvenStaysOpenOrClosed : MonoBehaviour {
         else
             force.torque = Vector3.zero;
 
-        //if (gameObject.transform.localEulerAngles.x > 358 && gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.1)
-        //{
+        if (gameObject.transform.localEulerAngles.x > 358 && gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.1)
+        {
+            StartCoroutine(MoveAway());
+        }
+    }
 
-        //}
+    IEnumerator MoveAway()
+    {
+        yield return new WaitForSeconds(0.3f);
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
+        Destroy(GetComponent<HingeJoint>());
+        foreach(Collider col in GetComponents<Collider>())
+        {
+            Destroy(col);
+        }
+
+        force.force = Vector3.left * 0.4f;
+
+        yield return new WaitForSeconds(4f);
+        Destroy(gameObject);
     }
 }
