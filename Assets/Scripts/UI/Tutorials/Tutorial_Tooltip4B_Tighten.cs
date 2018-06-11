@@ -10,6 +10,7 @@ public class Tutorial_Tooltip4B_Tighten : MonoBehaviour {
     public GameObject ContrR;
 
     private bool highlightingStarted = false;
+    private bool stoppingStarted = false;
 
 	// Use this for initialization
 	void Start () {
@@ -18,11 +19,9 @@ public class Tutorial_Tooltip4B_Tighten : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (highlightingStarted && glass.GetComponent<VRTK_InteractableObject>().IsGrabbed() && (ContrL.GetComponent<VRTK_ControllerEvents>().gripPressed || ContrR.GetComponent<VRTK_ControllerEvents>().gripPressed))
+        if (highlightingStarted && !stoppingStarted && glass.GetComponent<VRTK_InteractableObject>().IsGrabbed() && (ContrL.GetComponent<VRTK_ControllerEvents>().gripPressed || ContrR.GetComponent<VRTK_ControllerEvents>().gripPressed))
         {
-            ContrL.GetComponentInChildren<VRTK_ControllerTooltips>().ToggleTips(false);
-            ContrR.GetComponentInChildren<VRTK_ControllerTooltips>().ToggleTips(false);
-
+            stoppingStarted = true;
             StartCoroutine(StopHighlighting());
         }
 	}
@@ -42,7 +41,17 @@ public class Tutorial_Tooltip4B_Tighten : MonoBehaviour {
 
     IEnumerator StopHighlighting()
     {
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(1f);
+        if (!(ContrL.GetComponent<VRTK_ControllerEvents>().gripPressed || ContrR.GetComponent<VRTK_ControllerEvents>().gripPressed))
+        {
+            stoppingStarted = false;
+            yield break;
+        }
+
+        ContrL.GetComponentInChildren<VRTK_ControllerTooltips>().ToggleTips(false);
+        ContrR.GetComponentInChildren<VRTK_ControllerTooltips>().ToggleTips(false);
+
+        yield return new WaitForSeconds(5f);
         ContrL.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.GripLeft);
         ContrL.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.GripRight);
         ContrR.GetComponent<VRTK_ControllerHighlighter>().UnhighlightElement(SDK_BaseController.ControllerElements.GripLeft);
