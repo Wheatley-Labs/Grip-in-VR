@@ -952,7 +952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  maxScore: 12
+  maxScore: 15
   sessionManager: {fileID: 1147989180}
 --- !u!114 &1295517145
 MonoBehaviour:
