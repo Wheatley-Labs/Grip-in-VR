@@ -22,11 +22,8 @@ public class OvenStaysOpenOrClosed : MonoBehaviour {
         else
             force.torque = Vector3.zero;
 
-        if (gameObject.transform.localEulerAngles.x > 358 && gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.1)
-        {
-            StartCoroutine(MoveAway());
-        }
-    }
+        //if (gameObject.transform.localEulerAngles.x > 358 && gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.1)
+        //{
 
     IEnumerator MoveAway()
     {
