@@ -23,21 +23,47 @@ public class LogManager : MonoBehaviour {
 
     //The different logfiles
     private static string logOverall;
-    private static string logTime;
+    private static string logSingleTimes;
+    private static string logTotalTimes;
     private static string logDistance;
     private static string logErrors;
 
-    //References to logged GameObjects
+    #region References to logged GameObjects
     private SessionManager sessionManager;
     private InteractionManager interactionManager;
     private GameObject ctrlR;
     private bool ctrlRFound = false;
     private VRTK_ControllerEvents ctrlREvents;
+    private VRTK_InteractGrab ctrlRGrab;
     private ScoreCounter score;
     private bool scoreFound = false;
     private int currentScore;
+    #endregion
+
+    #region Variables: Measure Times, Grabs and Grip Adjustment
+    //all times exclude the tutorials
+    private static float t_startCycle;              //Timestamp of loading the scene of Task 1
+    private static float t_startTask1;              //Timestamp of starting Task when i.e. grabbing the first object
+    private float t_startTask2;
+    private float t_startTask3;
+    private float t_startTask4;
+    private bool t_taskStarted = false;             //Whether the first object of a task has already been grabbed
+    private float t_startGrabbingCurrent;           //Timestamp of grabbing the next object after the score increased
+
+    private static float t_totalGrabbing = 0f;      //The total accumulated time of holding any object
+    private static float t_allTasks = 0f;           //The total time of finishing the tasks from first grab to success
+
+    private int g_grabsCurrent = 0;                 //The number of grabs of the same glass before scoring
+    private int g_currentTaskGrabs = 0;             //The number of grabs for all glasses in one task
+    private static int g_totalGrabs = 0;            //The number of grabs for all tasks
+
+    private bool g_variedGripCurrent = false;       //Whether the grip has been varied for the currently used glass
+    private int g_currentTaskVariedGrip = 0;        //The number of glasses that the grip has been varied for handling in this task
+    private static int g_totalVariedGrip = 0;       //The number of glasses that the grip has been varied for handling in total
+    #endregion
 
     void Awake () {
+        //initialize paths
         if (!logInitialized)
         {
             //create path
@@ -48,12 +74,11 @@ public class LogManager : MonoBehaviour {
                 Directory.CreateDirectory(LOGFILE_DIRECTORY);
 
             logOverall = CreateLogFile("Overall");
-            logTime = CreateLogFile("Time");
+            logSingleTimes = CreateLogFile("SingleTimes");
+            logTotalTimes = CreateLogFile("TotalTimes");
             logDistance = CreateLogFile("Distance");
             logErrors = CreateLogFile("Errors");
         }
-
-        
     }
 
     private void Start()
@@ -67,11 +92,19 @@ public class LogManager : MonoBehaviour {
         if (!logInitialized)
         {
             WriteToLog("Overall", "Timestamp,Current task,Current mode,Current score,errors,PosX,PosY,PosZ,RotX,RotY,RotZ,Grip pressed,Trigger pressed,Trigger axis,Grabbing object", true);
+            WriteToLog("SingleTimes", "Task,Glass#,Time,Grabs,Varied Grip", true);
             logInitialized = true;
+        }
+
+        if (SceneManager.GetActiveScene().name.Contains("Task1"))
+        {
+            t_startCycle = Time.time;
         }
     }
 
 	void Update () {
+        #region OVERALL LOGGING
+
         //Collect data to log
         if (ctrlRFound)
         {
@@ -99,7 +132,12 @@ public class LogManager : MonoBehaviour {
         }
         else
             FindCtrlR();
-        
+        #endregion OVERALL LOGGING
+
+        #region TIME LOGGING
+        /////////////////////////////////////////////
+        #endregion TIME LOGGING
+
     }
     private string CreateLogFile(string filename)
     {
@@ -126,8 +164,11 @@ public class LogManager : MonoBehaviour {
             case "Overall":
                 targetLog = logOverall;
                 break;
-            case "Time":
-                targetLog = logTime;
+            case "SingleTimes":
+                targetLog = logSingleTimes;
+                break;
+            case "TotalTimes":
+                targetLog = logTotalTimes;
                 break;
             case "Distance":
                 targetLog = logDistance;
@@ -158,7 +199,11 @@ public class LogManager : MonoBehaviour {
         {
             ctrlR = GameObject.FindGameObjectWithTag("Right Controller");
             ctrlREvents = ctrlR.GetComponent<VRTK_ControllerEvents>();
+            ctrlRGrab = ctrlR.GetComponent<VRTK_InteractGrab>();
             ctrlRFound = true;
+
+            ctrlRGrab.ControllerStartGrabInteractableObject += ObjectGrabbed;
+            ctrlRGrab.ControllerStartUngrabInteractableObject += ObjectUngrabbed;
         }
         catch
         {
@@ -177,5 +222,22 @@ public class LogManager : MonoBehaviour {
         {
             scoreFound = false;
         }
+    }
+
+    private void ObjectGrabbed(object sender, ObjectInteractEventArgs e)
+    {
+        if (ctrlRGrab.GetGrabbedObject().tag == "Grabbable")
+        {
+            if (!t_taskStarted)
+            {
+                t_startTask1 = Time.time;           ///////////LEFT OFF HERE... DOES THIS MAKE SENSE?
+                t_taskStarted = true;
+            }
+        }
+    }
+
+    private void ObjectUngrabbed(object sender, ObjectInteractEventArgs e)
+    {
+        
     }
 }
