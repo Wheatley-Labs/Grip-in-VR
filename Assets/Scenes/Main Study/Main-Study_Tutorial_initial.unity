@@ -1222,6 +1222,7 @@ MonoBehaviour:
   nextTooltipModeA: {fileID: 1828639878}
   nextTooltipModeB: {fileID: 248599809}
   nextTooltipModeC: {fileID: 1898765364}
+  nextTooltipModeD: {fileID: 1828639878}
   glass: {fileID: 801571231}
   ContrL: {fileID: 1712386334}
   ContrR: {fileID: 1548086170}
@@ -3166,7 +3167,8 @@ Prefab:
     - target: {fileID: 114855211732608742, guid: 5de3b48ad77326b4e9426b5f4d8f73e2,
         type: 2}
       propertyPath: m_Text
-      value: Hello
+      value: "Willkommen in der K\xFCche,\nin der wir das Experiment\ndurchf\xFChren
+        werden."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5de3b48ad77326b4e9426b5f4d8f73e2, type: 2}

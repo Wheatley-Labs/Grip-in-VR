@@ -40,6 +40,11 @@
                 currentInteractionMode = 3;
                 SetMode(3);
             }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                currentInteractionMode = 4;
+                SetMode(4);
+            }
         }
 
         public void SetMode(int newMode)
@@ -77,7 +82,7 @@
                 Destroy(obj.GetComponent<VRTK_FixedJointGrabAttach>());
             }
 
-            // ENABLE MODE #1 - BASELINE
+            // ENABLE MODE #1 - BASELINE: ONLY FIRM 
             if (newMode == 1)
             {
                 VRTK_InteractableObject cmp11 = obj.AddComponent<VRTK_InteractableObject>() as VRTK_InteractableObject;
@@ -99,6 +104,7 @@
                 ConfigurableJointGrabAttach cmp22 = obj.AddComponent<ConfigurableJointGrabAttach>() as ConfigurableJointGrabAttach;
 
                 ConfigureVariableModes(cmp21, cmp22);
+                cmp21.isUsable = true;
                 cmp21.gripToTighten = true;
                 cmp21.useOverrideButton = VRTK_ControllerEvents.ButtonAlias.GripPress;
                 ConfigureAnchor(cmp22);
@@ -111,9 +117,21 @@
                 ConfigurableJointGrabAttach cmp32 = obj.AddComponent<ConfigurableJointGrabAttach>() as ConfigurableJointGrabAttach;
 
                 ConfigureVariableModes(cmp31, cmp32);
+                cmp31.isUsable = true;
                 cmp31.gripToTighten = false;
                 cmp31.useOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerPress;
                 ConfigureAnchor(cmp32);
+            }
+
+            //ENABLE MODE #4 - BASELINE: ONLY LOOSE
+            else if (newMode == 4)
+            {
+                Interactable_GripBinary cmp41 = obj.AddComponent<Interactable_GripBinary>() as Interactable_GripBinary;
+                ConfigurableJointGrabAttach cmp42 = obj.AddComponent<ConfigurableJointGrabAttach>() as ConfigurableJointGrabAttach;
+
+                ConfigureVariableModes(cmp41, cmp42);
+                cmp41.isUsable = false;
+                ConfigureAnchor(cmp42);
             }
 
             else
@@ -123,19 +141,18 @@
             }
         }
 
-        private void ConfigureVariableModes(Interactable_GripBinary cmpx1, ConfigurableJointGrabAttach cmpx2)
+        private void ConfigureVariableModes(Interactable_GripBinary cmpX1, ConfigurableJointGrabAttach cmpX2)
         {
-            cmpx1.isGrabbable = true;
-            cmpx1.holdButtonToGrab = true;
-            cmpx1.grabAttachMechanicScript = cmpx2;
-            cmpx1.isUsable = true;
-            cmpx1.holdButtonToUse = true;
-            cmpx1.useOnlyIfGrabbed = true;
-            cmpx1.gravityPull = true;
-            cmpx1.triggerToGrab = true;
+            cmpX1.isGrabbable = true;
+            cmpX1.holdButtonToGrab = true;
+            cmpX1.grabAttachMechanicScript = cmpX2;
+            cmpX1.holdButtonToUse = true;
+            cmpX1.useOnlyIfGrabbed = true;
+            cmpX1.gravityPull = true;
+            cmpX1.triggerToGrab = true;
             
-            cmpx2.precisionGrab = true;
-            cmpx2.precisionButCentered = true;
+            cmpX2.precisionGrab = true;
+            cmpX2.precisionButCentered = true;
         }
 
         private void ConfigureAnchor(ConfigurableJointGrabAttach cmp)

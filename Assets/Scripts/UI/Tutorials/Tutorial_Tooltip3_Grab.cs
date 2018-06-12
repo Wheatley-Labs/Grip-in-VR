@@ -9,6 +9,7 @@ public class Tutorial_Tooltip3_Grab : MonoBehaviour {
     public GameObject nextTooltipModeA;
     public GameObject nextTooltipModeB;
     public GameObject nextTooltipModeC;
+    public GameObject nextTooltipModeD;
     public GameObject glass;
     public GameObject ContrL;
     public GameObject ContrR;
@@ -44,6 +45,9 @@ public class Tutorial_Tooltip3_Grab : MonoBehaviour {
                     break;
                 case 3:
                     nextTooltipModeC.SetActive(true);
+                    break;
+                case 4:
+                    nextTooltipModeD.SetActive(true);
                     break;
             }
             Destroy(gameObject);
