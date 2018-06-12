@@ -70,8 +70,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1528210879551374}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -4.7678876, y: 6.7664104, z: -21.81555}
-  m_LocalScale: {x: 7.142859, y: 7.1428585, z: 7.142859}
+  m_LocalPosition: {x: -0.8272481, y: 0.8952859, z: -0.5009272}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4868747612115562}
   m_Father: {fileID: 0}
@@ -272,4 +272,5 @@ MonoBehaviour:
   triggerToGrab: 1
   gripToTighten: 1
   hideController: 0
+  objectGrabbed: 0
   defaultDangelingDamper: 0.03
