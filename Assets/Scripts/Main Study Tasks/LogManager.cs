@@ -42,21 +42,25 @@ public class LogManager : MonoBehaviour {
 
     #region Variables: Measure Times, Grabs and Grip Adjustment
     //all times exclude the tutorials
-    private static float t_startCycle;              //Timestamp of loading the scene of Task 1
-    private static float t_startTask1;              //Timestamp of starting Task when i.e. grabbing the first object
-    private float t_startTask2;
-    private float t_startTask3;
-    private float t_startTask4;
-    private bool t_taskStarted = false;             //Whether the first object of a task has already been grabbed
-    private float t_startGrabbingCurrent;           //Timestamp of grabbing the next object after the score increased
+    private static float ts_startCycle;             //Timestamp of loading the scene of Task 1
+    private static float ts_startTask1;             //Timestamp of initially starting the tasks, i.e. when grabbing the first object of task 1
+    private float ts_startCurrentTask;              //Timestamp of starting current Task, i.e. when grabbing the first object
+    private float ts_startGrabbingCurrent;          //Timestamp of initially grabbing the next object after the score increased
+    private float ts_latestGrabbingCurrent;         //Timestamp of the latest grab of the current object, potentially after having dropped it in between
+    private bool taskStarted = false;               //Whether the first object of a task has already been grabbed
+    private bool objectFresh = true;                //Whether the object is freshly instantiated or has already been grabbed before
 
+    private float t_currentGrabbing = 0f;           //The accumulated time of holding the current object
     private static float t_totalGrabbing = 0f;      //The total accumulated time of holding any object
     private static float t_allTasks = 0f;           //The total time of finishing the tasks from first grab to success
 
+    private bool isGrabbing = false;                //Whether the right controller is currently grabbing a glass
     private int g_grabsCurrent = 0;                 //The number of grabs of the same glass before scoring
     private int g_currentTaskGrabs = 0;             //The number of grabs for all glasses in one task
     private static int g_totalGrabs = 0;            //The number of grabs for all tasks
 
+    private bool g_looseGripCurrent = false;        //Whether the current object has been held loosely
+    private bool g_firmGripCurrent = false;         //Whether the current object has been held firmly
     private bool g_variedGripCurrent = false;       //Whether the grip has been varied for the currently used glass
     private int g_currentTaskVariedGrip = 0;        //The number of glasses that the grip has been varied for handling in this task
     private static int g_totalVariedGrip = 0;       //The number of glasses that the grip has been varied for handling in total
@@ -92,13 +96,13 @@ public class LogManager : MonoBehaviour {
         if (!logInitialized)
         {
             WriteToLog("Overall", "Timestamp,Current task,Current mode,Current score,errors,PosX,PosY,PosZ,RotX,RotY,RotZ,Grip pressed,Trigger pressed,Trigger axis,Grabbing object", true);
-            WriteToLog("SingleTimes", "Task,Glass#,Time,Grabs,Varied Grip", true);
+            WriteToLog("SingleTimes", "Task,Glass#,Time till Score,Handling Time,Grabs,Varied Grip", true);
             logInitialized = true;
         }
 
         if (SceneManager.GetActiveScene().name.Contains("Task1"))
         {
-            t_startCycle = Time.time;
+            ts_startCycle = Time.time;
         }
     }
 
@@ -108,16 +112,10 @@ public class LogManager : MonoBehaviour {
         //Collect data to log
         if (ctrlRFound)
         {
-            bool isGrabbing = false;
-            if (ctrlR.GetComponent<VRTK_InteractGrab>().GetGrabbedObject() != null)
-                isGrabbing = true;
-            else
-                isGrabbing = false;
-
             if (!scoreFound)
             {
                 FindScore();
-                currentScore = 99;
+                currentScore = 0;
             }
             else
                 currentScore = score.score;
@@ -129,6 +127,25 @@ public class LogManager : MonoBehaviour {
                         ctrlR.transform.rotation.x + "," + ctrlR.transform.rotation.y + "," + ctrlR.transform.rotation.z + "," +
                         ctrlREvents.gripPressed + "," + ctrlREvents.triggerTouched + "," + ctrlREvents.GetTriggerAxis() + "," + isGrabbing,
                         true);
+
+            //Determine whether the grip was varied
+            if (taskStarted && (interactionManager.currentInteractionMode == 2 || interactionManager.currentInteractionMode == 3))
+            {
+                if (!g_variedGripCurrent)
+                {
+                    if (!g_firmGripCurrent && isGrabbing)
+                        CheckFirmGrip();
+                    if (!g_looseGripCurrent && isGrabbing)
+                        CheckLooseGrip();
+
+                    if(g_firmGripCurrent && g_looseGripCurrent)
+                    {
+                        g_variedGripCurrent = true;
+                        g_currentTaskVariedGrip += 1;
+                        g_totalVariedGrip += 1;
+                    }
+                }
+            }
         }
         else
             FindCtrlR();
@@ -217,6 +234,8 @@ public class LogManager : MonoBehaviour {
         {
             score = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreCounter>();
             scoreFound = true;
+
+            score.OnScore += Scored;
         }
         catch (NullReferenceException ex)
         {
@@ -228,16 +247,121 @@ public class LogManager : MonoBehaviour {
     {
         if (ctrlRGrab.GetGrabbedObject().tag == "Grabbable")
         {
-            if (!t_taskStarted)
+            isGrabbing = true;
+
+            if (!SceneManager.GetActiveScene().name.Contains("Tutorial"))
             {
-                t_startTask1 = Time.time;           ///////////LEFT OFF HERE... DOES THIS MAKE SENSE?
-                t_taskStarted = true;
+                if (!taskStarted)
+                {
+                    taskStarted = true;
+
+                    //Start timer for current task: From first grab to success
+                    ts_startCurrentTask = Time.time;
+
+                    if (SceneManager.GetActiveScene().buildIndex == 2)
+                    {   //Additional timer for Task 1
+                        ts_startTask1 = Time.time;
+                    }
+                }
+
+                if (objectFresh)
+                {
+                    ts_startGrabbingCurrent = Time.time;    //Start initial timer for overall time of current object
+                    g_grabsCurrent = 0;
+                    g_variedGripCurrent = false;
+                    g_firmGripCurrent = false;
+                    g_looseGripCurrent = false;
+                    t_currentGrabbing = 0f;
+                    objectFresh = false;
+                }
+
+                ts_latestGrabbingCurrent = Time.time;       //Start timer for the latest single grab of current object
+                g_grabsCurrent += 1;
+                g_currentTaskGrabs += 1;
+                g_totalGrabs += 1;
             }
         }
     }
 
     private void ObjectUngrabbed(object sender, ObjectInteractEventArgs e)
     {
-        
+        t_currentGrabbing += (Time.time - ts_latestGrabbingCurrent);
+        isGrabbing = false;
     }
+
+    private void Scored()
+    {
+        WriteToLog("SingleTimes",
+                   (SceneManager.GetActiveScene().buildIndex - 1) + "," + score.score + "," +
+                   (Time.time - ts_startGrabbingCurrent) + ","  + t_currentGrabbing + "," + 
+                   g_grabsCurrent + "," + g_variedGripCurrent
+                   , true);
+        Debug.Log((SceneManager.GetActiveScene().buildIndex - 1) + "," + score.score + "," +
+                   (Time.time - ts_startGrabbingCurrent) + "," + t_currentGrabbing + "," +
+                   g_grabsCurrent + "," + g_variedGripCurrent);
+        objectFresh = true;
+    }
+
+    #region Checking Grip Status
+
+    private void CheckFirmGrip()
+    {
+        if (interactionManager.currentInteractionMode == 2)
+        {
+            if (ctrlREvents.gripPressed)
+                StartCoroutine(GripStillPressed());
+        }
+
+        else if (interactionManager.currentInteractionMode == 3)
+            if (ctrlREvents.GetTriggerAxis() == 1f)
+                StartCoroutine(TriggerStillClicked());
+    }
+
+    private void CheckLooseGrip()
+    {
+        if (interactionManager.currentInteractionMode == 2)
+        {
+            if (!ctrlREvents.gripPressed)
+                StartCoroutine(GripStillNotPressed());
+        }
+
+        if (interactionManager.currentInteractionMode == 3)
+            if (ctrlREvents.GetTriggerAxis() < 0.9f)
+                StartCoroutine(TriggerStillSemi());
+    }
+
+    IEnumerator GripStillPressed()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (ctrlREvents.gripPressed && isGrabbing)
+            g_firmGripCurrent = true;
+    }
+
+    IEnumerator TriggerStillClicked()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (ctrlREvents.GetTriggerAxis() == 1f && isGrabbing)
+            g_firmGripCurrent = true;
+    }
+
+    IEnumerator GripStillNotPressed()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (!ctrlREvents.gripPressed && isGrabbing)
+            g_looseGripCurrent = true;
+    }
+
+    IEnumerator TriggerStillSemi()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (ctrlREvents.GetTriggerAxis() < 0.9f && isGrabbing)
+            g_looseGripCurrent = true;
+    }
+
+    #endregion
 }
+
+/* DON'T FORGET
+ * 
+ * 
+ * */
