@@ -10,7 +10,7 @@ public class ScoreCounter : MonoBehaviour
     public int score = 0;
     public int maxScore = 10;
 
-    public delegate void scoreEventHandler();
+    public delegate void scoreEventHandler(int currentScore);
     public event scoreEventHandler OnScore;
 
     private Text text;
@@ -51,7 +51,7 @@ public class ScoreCounter : MonoBehaviour
         
         if(OnScore != null)
         {
-            OnScore();
+            OnScore(score);
         }
     }
 

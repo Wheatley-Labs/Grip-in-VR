@@ -1,0 +1,6 @@
+Task,Time till Score,Handling Time,Distance till Score,Handling Distance,Errors,Grabs,Loose Grips,Firm Grips,Objects with Varied Grip
+1,24.94839,19.22056,40.12987,29.33743,0,15,0,0,0
+2,36.18425,30.18996,35.23574,28.40211,1,17,0,0,0
+3,24.60701,18.80844,32.2375,25.57524,0,15,0,0,0
+4,25.43857,18.65198,37.68625,28.06335,0,15,0,0,0
+All,111.1782,86.87093,145.2893,111.3781,1,62,0,0,0
