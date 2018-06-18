@@ -13,6 +13,9 @@ public class SessionManager : MonoBehaviour {
 
     public GameObject CtrlR;
 
+    public delegate void errorEventHandler();
+    public event errorEventHandler OnError;
+
     // Use this for initialization
     void Start () {
         //DontDestroyOnLoad(this.gameObject);
@@ -72,6 +75,11 @@ public class SessionManager : MonoBehaviour {
     public void AddError()  
     {
         error += 1;
+
+        if (OnError != null)
+        {
+            OnError();
+        }
     }
 
     IEnumerator ReloadAsyncThisScene()
