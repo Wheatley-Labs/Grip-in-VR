@@ -31,6 +31,7 @@ public class LogManager : MonoBehaviour {
     #region References to logged GameObjects
     private SessionManager sessionManager;
     private InteractionManager interactionManager;
+
     private GameObject ctrlR;
     private bool ctrlRFound = false;
     private VRTK_ControllerEvents ctrlREvents;
@@ -38,6 +39,9 @@ public class LogManager : MonoBehaviour {
     private ScoreCounter score;
     private bool scoreFound = false;
     private int currentScore;
+
+    private Transform targetTransform;
+    private bool targetFound = false;
     #endregion
 
     #region Variables: Measure Times, Distances, Grabs and Grip Adjustment
@@ -64,15 +68,15 @@ public class LogManager : MonoBehaviour {
     private static int gb_grabsTotal = 0;           //The number of grabs for all tasks
 
     //GRIP
-    private bool gp_looseCurrent = false;       //Whether the current object has been held loosely
-    private int gp_looseTask = 0;               //The number of objects that have been held loosely in this task
-    private static int gp_looseTotal = 0;       //The number of objects that have been held loosely in total
-    private bool gp_firmCurrent = false;        //Whether the current object has been held firmly
-    private int gp_firmTask = 0;                //The number of objects that have been held firmly in this task
-    private static int gp_firmTotal = 0;        //The number of objects that have been held firmly in total
-    private bool gp_variedCurrent = false;      //Whether the grip has been varied for the currently used glass
-    private int gp_variedTask = 0;              //The number of glasses that the grip has been varied for handling in this task
-    private static int gp_variedTotal = 0;      //The number of glasses that the grip has been varied for handling in total
+    private bool gp_looseCurrent = false;           //Whether the current object has been held loosely
+    private int gp_looseTask = 0;                   //The number of objects that have been held loosely in this task
+    private static int gp_looseTotal = 0;           //The number of objects that have been held loosely in total
+    private bool gp_firmCurrent = false;            //Whether the current object has been held firmly
+    private int gp_firmTask = 0;                    //The number of objects that have been held firmly in this task
+    private static int gp_firmTotal = 0;            //The number of objects that have been held firmly in total
+    private bool gp_variedCurrent = false;          //Whether the grip has been varied for the currently used glass
+    private int gp_variedTask = 0;                  //The number of glasses that the grip has been varied for handling in this task
+    private static int gp_variedTotal = 0;          //The number of glasses that the grip has been varied for handling in total
 
     //DISTANCES
     private float d_handlingCurrent = 0f;           //The distance covered by the controller while handling the current object
@@ -82,6 +86,11 @@ public class LogManager : MonoBehaviour {
     private float d_tillScoreTask = 0f;             //The distance covered by the controller from first grab until scoring for the current task
     private static float d_tillScoreTotal = 0f;     //The accumulated distance covered by the controller from first grab until scoring in total
     private Vector3 d_prevPos;                      //The controller's position in the previous frame
+
+    //PRECISION
+    private float p_precisionCurrent = 0f;          //How precise the current object has been placed on the target
+    private float p_precisionTask = 0f;             //How precise the objects of a task have been placed on the targets
+    private static float p_precisionTotal = 0f;     //How precise the objects in total have been placed on the targets
 
     //ERRORS
     private int e_errorsCurrent = 0;                //The errors, i.e. the number of dropped glasses, when attempting the next score
@@ -118,8 +127,8 @@ public class LogManager : MonoBehaviour {
         if (!logInitialized)
         {
             WriteToLog("Framewise", "Timestamp,Current task,Current mode,Current score,errors,PosX,PosY,PosZ,RotX,RotY,RotZ,Grip pressed,Trigger pressed,Trigger axis,Grabbing object", true);
-            WriteToLog("SingleObjects", "Timestamp Finished,Task,Glass#,Time till Score,Handling Time,Distance till Score,Handling Distance,Errors,Grabs,Loose Grip,Firm Grip,Varied Grip", true);
-            WriteToLog("Total", "Task,Time till Score,Handling Time,Distance till Score,Handling Distance,Errors,Grabs,Loose Grips,Firm Grips,Objects with Varied Grip", true);
+            WriteToLog("SingleObjects", "Timestamp Finished,Task,Glass#,Time till Score,Handling Time,Distance till Score,Handling Distance,Precision,Errors,Grabs,Loose Grip,Firm Grip,Varied Grip", true);
+            WriteToLog("Total", "Task,Time till Score,Handling Time,Distance till Score,Handling Distance,Precision,Errors,Grabs,Loose Grips,Firm Grips,Objects with Varied Grip", true);
             logInitialized = true;
         }
     }
@@ -136,7 +145,14 @@ public class LogManager : MonoBehaviour {
                 currentScore = 0;
             }
             else
+            {
                 currentScore = score.score;
+            }
+
+            if (!targetFound)
+            {
+                FindTarget();
+            }
 
             //Write data of current state in every frame to the Framewise Log
             WriteToLog("Framewise", Time.time + "," + SceneManager.GetActiveScene().buildIndex + "," + interactionManager.currentInteractionMode + "," +
@@ -167,6 +183,7 @@ public class LogManager : MonoBehaviour {
         }
         else
             FindCtrlR();
+
         #endregion FRAMEWISE LOGGING
 
         #region DISTANCE LOGGING
@@ -265,6 +282,19 @@ public class LogManager : MonoBehaviour {
         }
     }
 
+    private void FindTarget()
+    {
+        try
+        {
+            targetTransform = GameObject.FindGameObjectWithTag("Target").GetComponent<Transform>();
+            targetFound = true;
+        }
+        catch
+        {
+            targetFound = false;
+        }
+    }
+
     private void ObjectGrabbed(object sender, ObjectInteractEventArgs e)
     {
         if (ctrlRGrab.GetGrabbedObject().tag == "Grabbable")
@@ -310,16 +340,20 @@ public class LogManager : MonoBehaviour {
         isGrabbing = false;
     }
 
-    private void Scored(int newScore)
+    private void Scored(int newScore, GameObject glass)
     {
         if (!SceneManager.GetActiveScene().name.Contains("Tutorial"))
         {
             t_tillScoreCurrent = (Time.time - ts_startGrabbingCurrent);
 
+            Vector2 finalGlassPos = new Vector2 (glass.transform.position.x, glass.transform.position.z);
+            Vector2 targetPos = new Vector2(targetTransform.position.x, targetTransform.position.z);
+            p_precisionCurrent = Vector2.Distance(finalGlassPos,targetPos) * 100f;        //in cm
+
             WriteToLog("SingleObjects",
                        Time.time + "," + (SceneManager.GetActiveScene().buildIndex - 1) + "," + score.score + "," + //TASK & ITEM
                        t_tillScoreCurrent + "," + t_handlingCurrent + "," +                                         //TIMES
-                       d_tillScoreCurrent + "," + d_handlingCurrent + "," +                                         //DISTANCES
+                       d_tillScoreCurrent + "," + d_handlingCurrent + "," + p_precisionCurrent + "," +              //DISTANCES & PRECISION
                        e_errorsCurrent + "," + gb_grabsCurrent + "," +                                              //ERRORS & GRABS
                        gp_looseCurrent + "," + gp_firmCurrent + "," + gp_variedCurrent                              //GRIP
                        , true);
@@ -328,6 +362,7 @@ public class LogManager : MonoBehaviour {
             t_tillScoreTask += t_tillScoreCurrent;
             d_handlingTask += d_handlingCurrent;
             d_tillScoreTask += d_tillScoreCurrent;
+            p_precisionTask += p_precisionCurrent;
 
             //after every task, log task values
             if (newScore == score.maxScore)
@@ -336,23 +371,24 @@ public class LogManager : MonoBehaviour {
                 t_tillScoreTotal += t_tillScoreTask;
                 d_handlingTotal += d_handlingTask;
                 d_tillScoreTotal += d_tillScoreTask;
+                p_precisionTotal += p_precisionTask;
 
                 WriteToLog("Total",
-                            (SceneManager.GetActiveScene().buildIndex - 1) + "," +      //TASK
-                            t_tillScoreTask + "," + t_handlingTask + "," +              //TIMES
-                            d_tillScoreTask + "," + d_handlingTask + "," +              //DISTANCES
-                            e_errorsTask + "," + gb_grabsTask + "," +                   //ERRORS & GRABS
-                            gp_looseTask + "," + gp_firmTask + "," + gp_variedTask      //GRIP
+                            (SceneManager.GetActiveScene().buildIndex - 1) + "," +                  //TASK
+                            t_tillScoreTask + "," + t_handlingTask + "," +                          //TIMES
+                            d_tillScoreTask + "," + d_handlingTask + "," + p_precisionTask + "," +  //DISTANCES & PRECISION
+                            e_errorsTask + "," + gb_grabsTask + "," +                               //ERRORS & GRABS
+                            gp_looseTask + "," + gp_firmTask + "," + gp_variedTask                  //GRIP
                             , true);
 
                 //after last task, log total values
                 if (SceneManager.GetActiveScene().buildIndex == 5)
                 {
                     WriteToLog("Total", "All," +
-                                t_tillScoreTotal + "," + t_handlingTotal + "," +                //TIMES
-                                d_tillScoreTotal + "," + d_handlingTotal + "," +                //DISTANCES
-                                e_errorsTotal + "," + gb_grabsTotal + "," +                     //ERRORS & GRABS
-                                gp_looseTotal + "," + gp_firmTotal + "," + gp_variedTotal       //GRIP
+                                t_tillScoreTotal + "," + t_handlingTotal + "," +                            //TIMES
+                                d_tillScoreTotal + "," + d_handlingTotal + "," + p_precisionTotal + "," +   //DISTANCES & PRECISION
+                                e_errorsTotal + "," + gb_grabsTotal + "," +                                 //ERRORS & GRABS
+                                gp_looseTotal + "," + gp_firmTotal + "," + gp_variedTotal                   //GRIP
                                 , true);
                 }
             }

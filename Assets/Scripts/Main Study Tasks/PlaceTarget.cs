@@ -42,7 +42,7 @@ public class PlaceTarget : MonoBehaviour {
                     if (other.GetComponentInParent<Rigidbody>().angularVelocity.magnitude < 0.1f 
                         && objTransform.localEulerAngles.x < 3f && objTransform.localEulerAngles.z < 3f)
                     {
-                        scoreCounter.UpdateScore(true);
+                        scoreCounter.UpdateScore(true, other.gameObject);
                         alreadySpawned = true;
                         other.GetComponentInParent<MeshRenderer>().material.color = new Color32(88, 209, 90, 153);
                         other.GetComponentInParent<VRTK_InteractableObject>().isGrabbable = false;

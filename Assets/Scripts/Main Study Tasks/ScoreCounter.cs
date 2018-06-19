@@ -10,7 +10,7 @@ public class ScoreCounter : MonoBehaviour
     public int score = 0;
     public int maxScore = 10;
 
-    public delegate void scoreEventHandler(int currentScore);
+    public delegate void scoreEventHandler(int currentScore, GameObject item);
     public event scoreEventHandler OnScore;
 
     private Text text;
@@ -27,7 +27,7 @@ public class ScoreCounter : MonoBehaviour
         text.text = score + " von " + maxScore;
     }
 
-    public void UpdateScore(bool increase)
+    public void UpdateScore(bool increase, GameObject glass)
     {
         if (increase)
             score += 1;
@@ -51,7 +51,7 @@ public class ScoreCounter : MonoBehaviour
         
         if(OnScore != null)
         {
-            OnScore(score);
+            OnScore(score, glass);
         }
     }
 

@@ -318,7 +318,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: X von 12
+  m_Text: X von 15
 --- !u!222 &250327966
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -704,6 +704,46 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4898751693841920, guid: 310a959415a194344bc7396d5b69ce33, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224856990278088926, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224856990278088926, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224883019531090006, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224883019531090006, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224991730164637362, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224991730164637362, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224052639606085832, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224052639606085832, guid: 310a959415a194344bc7396d5b69ce33,
+        type: 2}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
