@@ -138,12 +138,10 @@
             {
                 //Adjust position damper when object is grabbed
                 tightness = grabbingController.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis();
-                if (tightness < 0.25f)
+                if (tightness < 0.5f)
                     NewSlerp(defaultDangelingDamper);
-                else if (tightness < 0.7)
-                    NewSlerp((tightness * tightness) /2);
                 else
-                    NewSlerp(tightness / 2);
+                    NewSlerp(Map(tightness, 0.5f, 1f, defaultDangelingDamper,0.5f));
             }
             //Turn on the flashlight if a Light component is found in the children
             if (objectGrabbed && grabbingController.GetComponent<VRTK_ControllerEvents>().touchpadPressed && Time.timeSinceLevelLoad > (lastLightTrigger + 0.4f))
@@ -151,6 +149,11 @@
                 if (flashLight != null)
                     TriggerFlashlight();
             }
+        }
+
+        private static float Map(float value, float inputFrom, float inputTo, float outputFrom, float outputTo)
+        {
+            return ((value - inputFrom) / (inputTo - inputFrom) * (outputTo - outputFrom) + outputFrom);
         }
 
         private void Unparent()

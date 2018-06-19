@@ -17,7 +17,7 @@ using UnityEngine.SceneManagement;
 public class LogManager : MonoBehaviour {
     #region Variables: Filehandling and Paths
     public string testSubject = "XX";
-    public int testCycle = 1;
+    public int testCycle = 0;
 
     private static bool logInitialized = false;
     private static string LOGFILE_DIRECTORY;

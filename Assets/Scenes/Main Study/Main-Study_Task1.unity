@@ -1559,6 +1559,16 @@ Prefab:
       propertyPath: CtrlR
       value: 
       objectReference: {fileID: 1548086170}
+    - target: {fileID: 114483396769888268, guid: f346b5dce4dc0d4409efc3d95aed61a6,
+        type: 2}
+      propertyPath: currentInteractionMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114969084929162532, guid: f346b5dce4dc0d4409efc3d95aed61a6,
+        type: 2}
+      propertyPath: testCycle
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f346b5dce4dc0d4409efc3d95aed61a6, type: 2}
   m_IsPrefabParent: 0
