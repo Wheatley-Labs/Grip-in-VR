@@ -4,6 +4,7 @@
     using UnityEngine;
     using VRTK.GrabAttachMechanics;
     using UnityEngine.UI;
+    using UnityEngine.SceneManagement;
 
     public class InteractionManager : MonoBehaviour {
 
@@ -17,7 +18,11 @@
 
         private void OnLevelWasLoaded(int level)
         {
-            currentInteractionMode = handoverInteractionMode;
+            if (SceneManager.GetActiveScene().name.Contains("Tutorial"))
+                handoverInteractionMode = currentInteractionMode;
+            else
+                currentInteractionMode = handoverInteractionMode;
+
             SetMode(currentInteractionMode);
         }
 

@@ -17,10 +17,11 @@ using UnityEngine.SceneManagement;
 public class LogManager : MonoBehaviour {
     #region Variables: Filehandling and Paths
     public string testSubject = "XX";
+    public int testCycle = 1;
 
     private static bool logInitialized = false;
     private static string LOGFILE_DIRECTORY;
-    private static string LOGFILE_NAME_TIME_FORMAT = "yyyy-MM-dd_HH-mm-ss";	// prefix of the logfile, created when application starts (year - month - day - hour - minute - second)    
+    private static string LOGFILE_NAME_TIME_FORMAT = "yyyy-MM-dd_HH-mm-ss";	    // prefix of the logfile, created when application starts (year - month - day - hour - minute - second)    
 
     //The different logfiles
     private static string logFramewise;
@@ -99,6 +100,8 @@ public class LogManager : MonoBehaviour {
     #endregion
 
     void Awake () {
+        interactionManager = GameObject.FindGameObjectWithTag("ExperimentManager").GetComponent<InteractionManager>();
+
         //initialize paths
         if (!logInitialized)
         {
@@ -119,7 +122,6 @@ public class LogManager : MonoBehaviour {
     {
         sessionManager = GameObject.FindGameObjectWithTag("ExperimentManager").GetComponent<SessionManager>();
         sessionManager.OnError += NewError;
-        interactionManager = GameObject.FindGameObjectWithTag("ExperimentManager").GetComponent<InteractionManager>();
         FindCtrlR();
         FindScore();
 
@@ -201,14 +203,16 @@ public class LogManager : MonoBehaviour {
         #endregion TIME LOGGING
 
     }
+
     private string CreateLogFile(string filename)
     {
         // create files for this session using time prefix based on standard UTC time
         string fullPath = LOGFILE_DIRECTORY
             + "/"
-            + System.DateTime.Now.ToString(LOGFILE_NAME_TIME_FORMAT)
-            + "_"
-            + filename
+            + DateTime.Now.ToString(LOGFILE_NAME_TIME_FORMAT)
+            + "_Cycle" + testCycle
+            + "_Mode" + interactionManager.currentInteractionMode
+            + "_" + filename
             + ".csv";
         File.Create(fullPath);
 
