@@ -68,7 +68,7 @@ public class Tutorial_Tooltip4C_Tighten : MonoBehaviour {
 
     private bool IsGripLoose(GameObject contr)
     {
-        if (contr.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis() < 0.7 &&
+        if (contr.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis() < 0.9 &&
             contr.GetComponent<VRTK_ControllerEvents>().GetTriggerAxis() > 0.2)
             return true;
         else
