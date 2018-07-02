@@ -1,0 +1,5 @@
+Timestamp,Current task,Current mode,Current score,errors,PosX,PosY,PosZ,RotX,RotY,RotZ,Grip pressed,Trigger pressed,Trigger axis,Grabbing object
+0,0,2,0,0,0,0,0,0,0,0,False,False,0,False
+0.02,0,2,0,0,-0.017,0,0.027,0,0,0,False,False,0,False
+0.3087721,0,2,0,0,-0.017,0,0.027,0,0,0,False,False,0,False
+0.3468769,0,2,0,0,-0.017,0,0.027,0,0,0,False,False,0,False
