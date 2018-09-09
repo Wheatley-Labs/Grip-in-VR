@@ -1,0 +1,31 @@
+Timestamp,ID,What is your gender?,What is your age?,What is your current occupation?,How often have you played video games in the last 6 months? (PC, console, smartphone, VR, etc.),Do you already have experience with virtual reality?,Which VR systems have you already used?,Which VR systems do you own?,Did you ever feel dizzy or sick when using VR?
+2018/06/25 11:12:21 AM GMT+2,01,Female,26,Student,Rarely,Yes, also as a developer,"HTC Vive,Oculus Rift,Google Cardboard,Microsoft HoloLense / Microsoft Mixed Reality",Google Cardboard,No
+2018/06/25 12:06:12 PM GMT+2,02,Female,24,Student,Rarely,Yes, I tried it before,"Oculus Rift,Google Cardboard",Google Cardboard,Yes, sometimes
+2018/06/25 3:12:34 PM GMT+2,03,Female,24,Student,Occasionally,Yes, I tried it before,HTC Vive,None,Yes, sometimes
+2018/06/25 5:21:13 PM GMT+2,04,Female,27,Student,Rarely,Yes, I tried it before,HTC Vive,None,No
+2018/06/26 10:06:02 AM GMT+2,05,Female,24,Student,Rarely,Yes, also as a developer,"HTC Vive,Google Cardboard",Google Cardboard,Yes, sometimes
+2018/06/26 11:12:23 AM GMT+2,06,Male,37,Student,Occasionally,Yes, I use it regularly,"HTC Vive,Oculus Rift,Sony PlayStation VR,Samsung Gear VR,Google Cardboard","Sony PlayStation VR,Google Cardboard",No
+2018/06/26 12:16:46 PM GMT+2,07,Male,19,Student,Often,Yes, I tried it before,Sony PlayStation VR,None,No
+2018/06/26 2:32:00 PM GMT+2,08,Male,22,Student,Rarely,No,,,
+2018/06/27 10:01:27 AM GMT+2,09,Male,25,Student,Occasionally,Yes, I tried it before,"HTC Vive,Google Cardboard",Google Cardboard,No
+2018/06/27 11:07:11 AM GMT+2,10,Male,22,Student,Often,No,,,
+2018/07/03 12:20:59 PM GMT+2,11,Male,21,Student,Often,Yes, I tried it before,Oculus Rift,None,No
+2018/06/27 4:10:52 PM GMT+2,12,Male,22,Student,Occasionally,Yes, I tried it before,unknown,None,No
+2018/06/27 5:10:34 PM GMT+2,13,Male,51,Unemployed,Occasionally,Yes, I tried it before,Propriatary,None,No
+2018/06/27 6:30:35 PM GMT+2,14,Male,19,Student,Often,No,,,
+2018/06/28 11:19:35 AM GMT+2,15,Male,26,Student,Often,Yes, also as a developer,"HTC Vive,Oculus Rift,Google Cardboard,Microsoft HoloLense / Microsoft Mixed Reality,4D Kino",Google Cardboard,Yes, sometimes
+2018/06/28 12:11:39 PM GMT+2,16,Female,22,Student,Rarely,Yes, I tried it before,Samsung Gear VR,None,No
+2018/06/28 2:06:58 PM GMT+2,17,Male,21,Student,Often,No,,,
+2018/06/28 4:37:56 PM GMT+2,18,Male,24,Student,Occasionally,No,,,
+2018/06/29 10:08:26 AM GMT+2,19,Male,23,Student,Never,No,,,
+2018/06/29 11:05:59 AM GMT+2,20,Male,37,Student,Often,Yes, I tried it before,HTC Vive,None,No
+2018/06/29 1:24:16 PM GMT+2,21,Male,23,Student,Rarely,Yes, I tried it before,Oculus Rift,None,Yes, sometimes
+2018/06/29 3:58:49 PM GMT+2,22,Female,25,Student,Rarely,No,,,
+2018/07/02 4:05:46 PM GMT+2,23,Male,19,Student,Often,No,,,
+2018/07/03 11:37:25 AM GMT+2,24,Male,24,Student,Rarely,No,,,
+2018/07/03 2:02:09 PM GMT+2,25,Male,18,Student,Often,Yes, I use it regularly,"HTC Vive,Oculus Rift,Sony PlayStation VR",None,Yes, sometimes
+2018/07/04 10:18:52 AM GMT+2,26,Female,21,Student,Never,No,,,
+2018/07/04 11:08:50 AM GMT+2,27,Male,32,Student,Rarely,No,,,
+2018/07/04 2:59:03 PM GMT+2,28,Male,26,Student,Rarely,Yes, I tried it before,"HTC Vive,Oculus Rift,Microsoft HoloLense / Microsoft Mixed Reality",None,Yes, sometimes
+2018/07/04 12:00:06 PM GMT+2,29,Male,21,Student,Often,No,,,
+2018/07/04 4:05:13 PM GMT+2,30,Male,26,Student,Often,No,,,
