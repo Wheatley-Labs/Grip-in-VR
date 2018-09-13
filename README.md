@@ -4,12 +4,13 @@ This project is part of the master thesis by Michael Bonfert.
 ________________________________________________________________
 
 GRIP FIRMNESS IN VIRTUAL REALITY
+
 Empirical Studies on Variable Grip for Handling Virtual Objects
 ________________________________________________________________
 
 Digital Media Lab at the University of Bremen
-Primary Examiner:	Dr. Robert Porzel
-Second Examiner: 	Prof. Dr. Johannes Schöning 
+
+Primary Examiner:	Dr. Robert Porzel | Second Examiner: 	Prof. Dr. Johannes Schöning 
 
 September 2018
 
@@ -19,4 +20,5 @@ empirically compare usability and performance to the status quo, and encourage a
 thorough engagement with this topic in the industry and research.
 
 Please get in touch if you are interested in the thesis. I will gladly send it to you.
+
 bonfert@uni-bremen.de
