@@ -1,4 +1,4 @@
-# VR-Grasping
+# Grip in VR
 This project is part of the master thesis by Michael Bonfert.
 
 ________________________________________________________________
