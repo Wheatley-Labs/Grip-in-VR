@@ -3,26 +3,41 @@ guid: 7eaa8fff1cd0130408ac40660406624f
 SketchUpImporter:
   generateBackFace: 0
   mergeCoplanarFaces: 0
-  selectedNodes: 
+  selectedNodes: 0000000001000000020000000300000004000000
   assetHash:
     serializedVersion: 2
-    Hash: c7ee76420f2b2b740bf47d6fb6ea46fc
-  longitude: 0
-  latitude: 0
-  northCorrection: 0
+    Hash: a2d8d31029f0780cdf2b5181e19340d8
+  longitude: -105.242139
+  latitude: 40.018309
+  northCorrection: -0
   fileUnit: 0
   sketchUpImportData:
     defaultCamera:
-      position: {x: 0, y: 0, z: 0}
-      lookAt: {x: 0, y: 0, z: 1}
-      up: {x: 0, y: 1, z: 0}
-      fov: 45
-      aspectRatio: 1.33
-      orthoSize: 0
+      position: {x: 0.04954717, y: 0.28682557, z: -0.66652876}
+      lookAt: {x: 0.009656162, y: 0.08116929, z: 0.0028548606}
+      up: {x: -0.017442435, y: 0.9560485, z: 0.29268953}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
       isPerspective: 1
     scenes: []
-  serializedVersion: 22
-  fileIDToRecycleName: {}
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Group 1
+    100002: Group 3
+    100004: //RootNode
+    400000: Group 1
+    400002: Group 3
+    400004: //RootNode
+    2100000: _defaultMat
+    2100002: '[Color M09]'
+    2100004: '[Mirror 02]2'
+    2300000: Group 1
+    2300002: Group 3
+    3300000: Group 1
+    3300002: Group 3
+    4300000: Mesh Group 1
+    4300002: Mesh Group 3
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -57,6 +72,7 @@ SketchUpImporter:
     globalScale: 0.0254
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -74,11 +90,16 @@ SketchUpImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 0
   copyAvatar: 0
   humanDescription:
@@ -93,7 +114,6 @@ SketchUpImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

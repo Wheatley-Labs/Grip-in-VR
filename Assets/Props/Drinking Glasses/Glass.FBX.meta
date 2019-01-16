@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 6aa4f5d2fe74091479ee5064dec8c441
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Box037
     100002: Box038
@@ -133,6 +133,7 @@ ModelImporter:
     6400032: glass
     6400034: water
     9500000: //RootNode
+    6000828045688606266: Camera01
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -184,6 +185,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.00508
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -203,7 +206,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
