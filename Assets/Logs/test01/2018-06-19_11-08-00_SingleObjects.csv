@@ -1,7 +1,0 @@
-Timestamp Finished,Task,Glass#,Time till Score,Handling Time,Distance till Score,Handling Distance,Precision,Errors,Grabs,Loose Grip,Firm Grip,Varied Grip
-14.27556,1,1,6.452112,6.411878,2.059312,2.056825,0.005075536,0,1,True,False,False
-20.32,1,2,4.330563,4.132359,2.14627,2.120319,0.001236264,0,1,True,False,False
-26.60889,1,3,4.88983,4.859032,2.123638,2.123124,0.005797531,0,1,True,True,True
-39.50889,1,4,11.06556,10.96852,2.638593,2.632749,0.03092702,0,1,True,False,False
-46.50889,1,5,4.940399,4.656487,2.145601,2.135354,0.03206462,0,2,True,False,False
-54.87556,1,6,6.761963,5.478226,2.50438,2.233024,0.03018893,0,3,True,False,False
