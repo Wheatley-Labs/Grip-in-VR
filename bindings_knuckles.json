@@ -1,5 +1,6 @@
 {
-   "app_key" : "application.generated.unity.steamvr.exe",
+   "alias_info" : {},
+   "app_key" : "application.generated.unity.variablegripinvr.exe",
    "bindings" : {
       "/actions/buggy" : {
          "sources" : [
@@ -215,6 +216,24 @@
                   "force_release_threshold" : "0.01"
                },
                "path" : "/user/hand/right/input/pinch"
+            },
+            {
+               "inputs" : {
+                  "force" : {
+                     "output" : "/actions/default/in/adjustgrip"
+                  }
+               },
+               "mode" : "force_sensor",
+               "path" : "/user/hand/left/input/grip"
+            },
+            {
+               "inputs" : {
+                  "force" : {
+                     "output" : "/actions/default/in/adjustgrip"
+                  }
+               },
+               "mode" : "force_sensor",
+               "path" : "/user/hand/right/input/grip"
             }
          ]
       },
@@ -260,6 +279,8 @@
       }
    },
    "controller_type" : "knuckles",
-   "description" : "",
-   "name" : "knuckles_default"
+   "description" : "Added \"AdjustGrip\" to the handle's grip sensor",
+   "name" : "knuckles_adjustGrip",
+   "options" : {},
+   "simulated_actions" : []
 }

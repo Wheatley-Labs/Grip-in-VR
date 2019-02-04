@@ -89,6 +89,14 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Single AdjustGrip
+        {
+            get
+            {
+                return SteamVR_Actions.default_AdjustGrip;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get
